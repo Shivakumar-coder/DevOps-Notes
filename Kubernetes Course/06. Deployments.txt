@@ -1,0 +1,19 @@
+Deployment: This is a K8s object that comes higher in the hierarchy.
+            This provides us with the ability to upgrade the underlying instances 
+            seamlessly using rolling updates, undo changes and resume changes as required.
+
+The definition file is same as replicaset except the kind now is Deployment.
+
+To run the deployment file
+>kubectl create -f <deployment-file-name>.yml
+
+
+To check deployments
+>kubectl get deployments
+
+The deployment will create replicasets.
+The replicasets will create new pods.
+
+
+To see all the commands at once
+>kubectl get all

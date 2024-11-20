@@ -1,0 +1,46 @@
+Terraform Validate: This will validate if the configuration file syntax is correct. If everything is correct, then 
+                    console will display success message. If there is an error in the file, then terraform will 
+                    highlight it in the console display and hints to fix it.
+                    The terraform apply failed in spite of our validation working! 
+                    This is because the validate command only carries out a general verification 
+                    of the configuration. It validated the resource block and the argument syntax but 
+                    not the values the arguments expect for a specific resource!
+            >terraform validate
+
+Terraform Format: This command scans the configuration files in the current working directory and formats the code 
+                  into a canonical format. This will help in improving the rediability of the terraform config file.
+                  When used it will display the files which has been changed.
+            >terraform fmt
+
+Terraform Show: When used, will show the current state of the infra as seen by terraform. -json flag will display the 
+                file resource in JSON format.
+            >terraform show
+            >terraform show -json
+
+Terraform Providers: This will list out all the providers used in the config dir.
+                >terraform providers
+
+                >terraform providers mirror /root/terraform/....
+                This will help us to copy provider plugins needed for the current config to another dir mentioned 
+                in the path specified after mirror.
+
+>terraform output
+>terraform output <variable_name>
+
+Terraform Refresh: This will help us sync Terraform with the real-world infra. If there are any changes made to a 
+                   resource created by Terraform outside it's control, such as a manual update, then terraform will 
+                   pick it up and update the state file. Refresh will run automatically by other command such as 
+                   plan and apply, -refresh=false used in such type of cmmd will bypass the refresh cmmd.
+                >terraform refresh
+
+Terraform Graph: This will display the visual representation of the dependencies and a Terraform config or an 
+                 execution plan. When executed, it will display the output in DOT format. To make more sense of it, we 
+                 need to install graph visualization s/w such as Graphviz
+            >terraform graph
+            >terraform graph | dot -Tsvg > graph.svg
+
+
+
+Do the best you can. No one 
+can do more than that.
+– John Wooden

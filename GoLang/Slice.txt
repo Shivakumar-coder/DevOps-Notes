@@ -1,0 +1,35 @@
+Slice is a reference of an array. Any value updation in the slice will also reflect in that array.
+---------------------------------------------------
+Slice Declaring and Initializing:
+Ex:
+arr := [10]int{1,2,3,4,5,6,7,8,9,10}
+
+slice_a := arr[1:8]
+fmt.Println(slice)
+
+slice_of_slice := slice[0:3]
+fmt.Println(slice_of_slice)
+---------------------------------------------------
+Declaring and Initializing empty slice:
+slice := make([]<data_type>, length, capacity)
+Ex:
+slice := make([]int,5,10)
+---------------------------------------------------
+Appending to a slice
+Ex:
+arr := [4]int{1,2,3,4}
+slice := arr[1:3]
+slice = append(slice, 900,-90,50)
+---------------------------------------------------
+Appending a slice to another slice
+slice = append(slice, anotherSlice... )
+Ex:
+arr_1 := [5]int{1,2,3,4,5}
+slice_1 := arr[:2]
+
+arr_2 := [5]int{6,7,8,9,10}
+slice_2 := arr[:2]
+
+new_slice := append(slice_1, slice_2...)
+---------------------------------------------------
+Deleting to a slice

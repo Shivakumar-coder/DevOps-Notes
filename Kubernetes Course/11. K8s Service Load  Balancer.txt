@@ -1,0 +1,16 @@
+Load Balancer: We know that the pods are hosted on the worker nodes in a cluster. To make the app accessible 
+                to external users, we create the services of type NodePort.
+                Now what would be the URL we give to end users to access the applications.
+
+Service defin file.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  type: LoadBalancer
+  ports:
+    - targetPort: 80
+      port: 80
+      nodePort: 30008

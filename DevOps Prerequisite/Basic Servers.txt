@@ -1,0 +1,83 @@
+Web servers : serves only static contents; Ex: nginx, Apache web server
+App servers : can serve both static and dynamic contents; Ex: Apache Tomcat
+
+===================================================================================
+
+Apache Web server :
+
+Listen at port 80
+
+logs file
+>cat /var/log/httpd/access_log
+>cat /var/log/httpd/error_log
+
+Config Files
+>cat /etc/httpd/conf/httpd.conf
+
+===================================================================================
+
+Apache Tomcat :
+
+Listen at port 8080
+
+start Tomcat:
+>sudo /opt/apache-tomcat-8/bin/startup.sh
+
+to change port:
+Step 1:
+>sudo sed -i 's/8081/9090/g'  /opt/apache-tomcat-8/conf/server.xml;
+Step 2:
+>sudo /opt/apache-tomcat-8/bin/shutdown.sh
+Step 3:
+>sudo /opt/apache-tomcat-8/bin/startup.sh
+Steep 4:
+>run the same cmd that which opens port for a webapp
+
+To restart Apache server:
+>sudo apachectl graceful
+
+===================================================================================
+
+Servers for python based web frameworks : 
+
+Web Frameworks: django, flask
+
+Servers: Gunicorn, uWSI, Gevent, Twisted Web
+
+to install python based packages:
+>sudo pip install -r /opt/simple-webapp-flask/requirements.txt
+
+The default location for the gunicorn binary is /usr/bin/gunicorn.
+If the gunicorn binary is installed, in a different location, such as /usr/lib/python3.6/site-packages/bin/gunicorn, export this path to the $PATH environment variable for the user thor.
+This way you can make use of the gunicorn command without having to provide the absolute path.
+
+Run Gunicorn with 3 workers in background and confirm with curl command.
+>nohup gunicorn app:app -w 3 &
+
+===================================================================================
+
+Servers to run nodejs apps :
+
+to check the scripts in the package:
+>jq . /opt/the-example-app.nodejs/package.json
+
+to install npm:
+>npm install
+
+to run a app:
+>node app.js
+
+to run a script for an environment:
+>npm run start:dev
+
+to install the latest upgrade of a package:
+>sudo npm install pm2@latest -g
+
+to run an app with pm2:
+pm2 start app.js
+
+to delete a running app:
+>pm2 delete app.js
+
+to run a app with 4 cluster:
+pm2 start app.js -i 4

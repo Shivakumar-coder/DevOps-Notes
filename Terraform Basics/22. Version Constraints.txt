@@ -1,0 +1,30 @@
+Terraform by default will download and install latest plugin.
+We can change this behaviour by using required_providers block inside terraform.
+Ex:
+---
+terraform {
+    required_providers {
+        local = {
+            source = "hashicorp/local"
+            version = "1.4.0" ---------------> "!= 2.0.0" this will ensure any other version is download except 2.0.0
+        }
+    }
+}
+
+resource "local_file" "pet" {
+    filename = "/root/pet.txt"
+    content = "We love pets!"
+}
+
+
+version = "> 1.2.0, < 2.0.0, != 1.4.0"
+
+version = "~> 1.2" -------> This means if there is any version greater than 1.2 till 1.9, download that else go with 1.2
+This is called pessimistic constraint operator.
+
+"
+There is only one success - 
+to be able to spend your life 
+in your own way.
+"
+– Christopher Morley

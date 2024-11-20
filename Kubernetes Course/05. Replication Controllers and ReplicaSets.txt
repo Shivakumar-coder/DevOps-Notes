@@ -1,0 +1,89 @@
+Replica: To prevent users from losing access to our application, we would like to have more than 
+            one instance or pod running at the same time.
+
+Replication Controller: This helps us run multiple instances of a single pod in the K8s cluster, thus 
+                        providing high availability. This works even for single pod, the replication 
+                        controller will automatically bring up a new pod when the existing one fails.
+                        This helps in load balancing and scaling.
+
+Replica Set: This has the same purpose as that of the replication controller, but it's not the same as 
+                replication controller. Replication Controller is the older tech which is replaced by 
+                replia set.
+
+Example of Replication Controller- rc-definition.yml
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myapp-rc
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+  replicas: 3
+
+Here under spec the template consists of the info to create pod and container.
+>kubectl create -f rc-definition.yml
+
+
+Replica Set can also manage the pods which are not created as part of the replicaset. Beacuse of theis feature, we should 
+mention selector to notify replicaset of which pods needs to be managed under replicaset.
+Selector is an optional field.
+
+Example of Replica Set-
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+  replicas: 3
+  selector:
+    matchLabels:
+      type: front-end
+
+
+To scale an already existing pods then use below command:
+>kubectl replace -f replicaset-definition.yml -------> this is to be done after updating the yml file.
+
+>kubectl scale --replicas=6 -f replicaset-definition.yml -------> this will not update the yml file.
+
+>kubectl scale --replicas=6 replicaset myapp-replicas --------> this will not update the yml file.
+
+To see the number of replica set created:
+>kubectl get replicaset
+
+To see more info on replicaset:
+>kubectl describe replicaset myapp-replicaset
+
+To delete replicasets:
+>kubectl delete replicaset <replicaset-name>
+                OR
+>kubectl delete -f <file-name>.yml
+
+
+To edit the file of replicaset:
+>kubectl edit replicaset <replicaset-name>

@@ -1,0 +1,21 @@
+Interfaces:
+-- An interface specifies a method set and is a powerful way to introduce modularity in Go.
+-- Interface is like a blueprint for a methood set.
+-- They describe all the method of a method set by providing the function signature for each method.
+-- They specify a set of methods, but do not implement them.
+
+Syntax:
+type <interface_name> interface{
+    //Method signature
+}
+
+Ex:
+type FixedDeposite interface {
+    getRateOfInterest() float64
+    calcReturn() float64
+}
+
+Implementing an interface
+-- A type implements an interface by implementing its method.
+-- The go language interfaces are implemented implicitely.
+-- And it does not have any specific keyword to implement an interface.

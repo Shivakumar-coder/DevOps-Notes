@@ -1,0 +1,26 @@
+Terraform is a free and opensource tool developed by HashiCorp.
+It's installed as a single binary which can be setup very quickly.
+
+One of the biggest advantages of Terraform is it's ability to deploy infra across 
+multiple platform including private and public cloud.
+
+Terraform uses HCL HashiCorp Configuration Language which is a simple declarative language to 
+define the infra resources to be provisioned as blocks of code.
+
+Terraform config file extension is .tf
+
+Declarative: The code we defined is the state that we want our infra to be in which is the desired state. 
+             Terraform will take care of what is required to go from current state to the desired state.
+             Terraform does this in 3 phases; Init, Plan, Apply.
+
+1. Init: During the init phase, Terraform will initializes the project and identifies the providers to be 
+         used for the target env.
+
+2. Plan: During the plan phase, Terraform will draft a plan to get the target state.
+
+3. Apply: After plan state, Terraform makes the necessary changes required on the target env to bring it to 
+          the desired state. 
+
+Every object that Terraform manages is called a resource. A resource can be a compute instance, a db in the cloud 
+or in a on-prem that Terraform manages. Terraform manages the life cycle process from it's provisioning to config 
+to decommissioning.

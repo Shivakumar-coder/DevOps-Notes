@@ -1,0 +1,19 @@
+Verifying Playbook is like a testing scenario
+
+1. This can be done in check mode: No actual changes will be done in this mode
+Command:
+>ansible-playbook <playbook-file-name>.yml --check
+
+Note: Not all module will support check mode. Those type of module will be skiped in check mode.
+
+
+2. Another mode is diff mode: This will provide a before-and-after comparison of playbook changes.
+                            This will allow us to understand what type of changes will the playbook make after execution.
+Command:
+>ansible-playbook <playbook-file-name>.yml --check --diff
+
+
+3. Syntax Check mode: Here the Ansible checks for any syntax error by which the playbook ansible will throw exception.
+                      By this check we can ensure the playbook is error free.
+Command:
+>ansible-playbook <playbook-file-name>.yml --syntax-check

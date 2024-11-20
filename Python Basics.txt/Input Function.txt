@@ -1,0 +1,8 @@
+name = input("What is your name ? ")
+
+The input received from input function is always a string literal.
+
+age = int(input("How old are you ? "))
+^^Type casting to always accepts input as n integer.
+
+A program that doesn't use any input function, is called a deaf program.

@@ -1,0 +1,29 @@
+Ansible roles: The primary purpose of roles is to make your work reusable.
+               Be it for other tasks or projects within your organization or outside for others globally.
+               Roles also help in organizing your code within Ansible.
+               Roles introduce a set of best practices that must be followed to organize all tasks 
+               into a task directory, all variables used by these tasks in the vars directory, any 
+               default values goes into the defaults directory, any templates used by the playbooks go into the 
+               templates directory.
+
+Example:
+---
+-
+  name: Install and Configure MySQL
+  hosta: db-server
+  roles:
+    - greenlineguy.mysql
+    - nginx
+      become: yes
+      vars:
+        mysql_user_name: db-user
+
+
+To view list of roles
+>ansible-galaxy list
+
+To view the location were roles would be installed.
+>ansible-config dump | grep ROLE
+
+To install roles under current directive
+>ansible-galaxy install greenlineguy.mysql -p ./roles

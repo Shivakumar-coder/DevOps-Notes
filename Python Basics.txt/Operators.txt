@@ -1,0 +1,41 @@
+Exponential Operators -> **
+2**3
+
+Multi *
+
+Division /
+
+Floor Division //
+
+Modulo % (Remiander)
+
+Add +
+
+Subtracr -
+is also a unary operator
+Ex:
+-2
+Ex:
+-2-4
+>-6
+
+Highest to Lowest Priority:
++, - (Unary)
+**
+*, /, //, % (Left to Right)
++, - (binary)
+-------------------------------------
+Logical Operators:
+print(x>y and x>z)
+print(not x>y)
+print(x>y or x>z)
+-------------------------------------
+Bitwise Operators:
+<variable> & <variable>
+<variable> | <variable>
+<variable> ^ <variable> (XOR)
+~ <variable> (Uninary Operators)
+-------------------------------------
+Bit Shifting:
+print(22 >> 1) ------> Right shift
+print(22 << 1) ------> Left shift

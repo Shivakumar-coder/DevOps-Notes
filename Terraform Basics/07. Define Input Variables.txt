@@ -1,0 +1,26 @@
+Using values directly while writing config or main.tf file is a bad practice.
+
+Consider using a seperate file to store and use variables like variables.tf file.
+
+The keyword is variable
+Ex:
+---
+variable "filename" {
+    default="/root/pets.txt"
+}
+
+..........
+
+Here "variable" is a keyword and "filename" is the variable name.
+We can use this variable.tf file as shown below in main.tf file
+---
+resource "local_file" "pet" {
+    filename=var.filename
+    content=var.content
+}
+
+resource "random_pet" "my-pet" {
+    prefix=var.prefix
+    seperator=var.seperator
+    length=var.length
+}

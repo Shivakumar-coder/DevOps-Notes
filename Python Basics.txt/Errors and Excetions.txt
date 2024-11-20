@@ -1,0 +1,8 @@
+Ex:
+try:
+    name  = 'Lydia'
+    print('My name is ' + nme)
+except:
+    print("Something went wrong")
+
+print("All Done!")

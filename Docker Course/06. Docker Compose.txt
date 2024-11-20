@@ -1,0 +1,52 @@
+Docker Compose is not a part of Docker. It needs to be installed seperately
+
+Example docker-compose.yml file :- 
+version: '3.0' -----> type version of the docker-compose.yml file
+services: ----------> as per syntax
+  redis: -----------> service name
+    image: redis:alpine -----> image should be used
+  clickcounter: -------------> service name
+    image: kodekloud/click-counter -------> image should be used
+    ports: -------------------------------> port to be setup
+    - 8085:5000 --------------------------> ports to be used
+
+>docker-compose up ----------> this command will run the docker compose file.
+
+Using --link is deprecated in docker compose, this concept is replaced by other concept like docker swarm
+
+Docker Compose file can only be run on a single host.
+
+>docker run -d --name=redis redis
+>docker run -d --name=db postgres
+>docker run -d --name=vote -p 5000:80 --link redis:redis voting-app
+>docker run -d --name=result -p 5001:80 result-app
+>docker run -d --name=worker worker
+
+Here the link argument will link the vote container to container named redis. But before deploying voting app container, 
+we need to deploy redis container.
+By this link method docker will create an entry into /etc/hosts file on the voting-app container, adding an entry with the 
+hostname redis with an internal IP of the redis container.
+
+---docker-compose.yml---
+
+redis:
+  image: redis
+db:
+  image: postgres:9.4
+vote:
+  image: voting-app
+  port:
+    - 5000:80
+  links:
+    - redis
+result:
+  image: result-app
+  ports:
+    - 5001:80
+  links:
+    - db
+worker:
+  image: worker
+  links:
+    - redis
+    - db

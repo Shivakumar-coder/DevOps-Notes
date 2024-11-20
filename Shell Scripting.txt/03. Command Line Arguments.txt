@@ -1,0 +1,32 @@
+To pass value to variables inside the script file. The values written after the shell script command is stored 
+in a built in variable name. The cmmd itself is stored in a variable $0 and the argument passed with the cmmd 
+at $1 and so on.
+Syntax
+
+
+Ex:
+$ create-and-launch-rocket lunar-mission
+
+create-and-launch-rocket -----------> $0 argument in command line
+lunar-mission ----------------------> $1 argument in command line
+.                                     .
+.                                     .
+.                                     .
+.                                     .
+.                                     .
+.                                     $<n-1> argument in command line
+
+
+create-and-launch-rocket.sh
+mission_name=$1
+.
+.
+.
+------------
+Now shell script will look like this
+
+
+Best Practice:
+1. Design your script to be re-usable.
+2. Script should not require to be edited before running.
+3. Use command line argument to pass inputs.

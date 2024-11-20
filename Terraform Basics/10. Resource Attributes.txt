@@ -1,0 +1,21 @@
+Resource attribute helps us to link two resources.
+Example:
+---
+resource "local_file" "pet" {
+    filename=var.filename
+    content="My favorite pet is ${random_pet.my-pet.id}"
+}
+
+resource "random_pet" "my-pet" {
+    prefix=var.prefix
+    separator=var.separator
+    length=var.length
+}
+
+Here ${random_pet.my-pet.id} is written with resource type followed by resource name followed by attribute reference.
+The attribute is a combined with "." and forms a run time variable known as interpolation sequence.
+
+
+Resource "time_static" does not need any arguments to be supplied to work.
+
+When applied as it is, terraform creates a logical resource locally (similar to random_pet) with the current time.

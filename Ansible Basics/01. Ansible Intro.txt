@@ -1,0 +1,20 @@
+When we install Ansible on a machine. It will create a default config file at /etc/ansible/ansible.cfg 
+This config file will govern the default behaviour of ansible using a set of parameters.
+
+The default config filecan be over written and can be used from a different folder as well.
+$ANSIBLE_CONFIG=/opt/ansible-web.cfg ansible-playbook playbook.yml
+
+The 1st priority is given to the parameters configured in the file specified through an env variable.
+
+All ansible playbooks are written in YAML type file.
+
+
+Sample commands to view configurations:
+1. List all configurations
+>ansible-config list
+
+2. Show the current config file
+>ansible-config view
+
+3. Show the current settings
+>ansible-config dump

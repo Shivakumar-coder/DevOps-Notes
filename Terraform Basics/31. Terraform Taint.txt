@@ -1,0 +1,11 @@
+Tainted: When a resource creation filed, Terraform will mark that resource as tainted an will try to create the 
+         resource once again in next plan and apply command.
+
+Use case: There would be a sceen were we are required to recreate a resource, but the Terraform will not 
+          do it as it assumes that the resource dosn't need recreating. 
+          In this scenario we can mark the resource as tainted with taint command.
+    Ex:
+    >terraform taint aws_instance.webserver
+
+    To de-mark taint we can use this command
+    >terraform untaint aws_instance.webserver

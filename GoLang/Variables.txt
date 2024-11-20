@@ -1,0 +1,29 @@
+Declaring + initialization variable
+Syntax:
+var <variable name> <data type> = <value>
+
+
+Long form:
+var s string = "foo"
+
+Shorthand way:
+var (
+    s string = "foo"
+    i int = 5)
+
+var s,r string = "foo", "faa"
+
+Short Variable Declaration
+Ex:
+s := "Hello World"
+
+=================================Variable Scope=================================
+
+{
+    //outer block
+    {
+        //inner block
+        //inner block can access outer block's variable
+    }
+    //outer block can not access inner block's variable
+}

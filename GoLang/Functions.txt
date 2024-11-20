@@ -1,0 +1,105 @@
+Functions are used for reusability and abstraction.
+Syntax:
+func <ffunction_name>(<params>) <return type> {
+    // body of the function
+}
+
+Naming convention for functions:
+1. Must begin with a letter.
+2. Can have any number of additional letters and symbols.
+3. Cannot contain spaces.
+4. case-sensitive.
+
+Ex:
+func addSubtract(a int, b int) (int,int) {
+    sum := a+b
+    sub := a-b
+    return sum, diff
+}
+
+Ex:
+func addSubtract(a int, b int) (sum int, sub int) {
+    sum = a+b
+    sub = a-b
+    return
+}
+
+Variadic functions:
+Syntax:
+func <func_name>(param-1 type, param-2 type, param-3 ...type) <return_type>
+Ex:
+func sumNumbers(n ...int) int
+func strNum(str string, n ...int) int 
+
+===================================================================================================
+Anonymous Functions:
+Ex:
+x := func(l int, b int) int {
+    return l*b
+}
+----------------------------------
+var (
+        cube = func(i int) string {
+                c := i * i * i
+                return strconv.Itoa(c)
+        }
+)
+
+func main() {
+        x := cube(8)
+        fmt.Printf("%T %v", x, x)
+}
+===================================================================================================
+High order functions:
+Functions that receives a function as an argument or returns a function as output.
+Ex:
+package main
+
+import "fmt"
+
+func addHundred(x int) int {
+        return x + 100
+}
+func partialSum(add100 func(x int) int, x ...int) int {
+        sum := 0
+        for _, value := range x {
+                sum += value
+        }
+        return add100(sum)
+
+}
+func main() {
+        partial := partialSum(addHundred, 1, 2, 3)
+        fmt.Println(partial)
+}
+
+Ex:
+package main
+
+import "fmt"
+
+func addHundred(x int) int {
+    return x + 100
+}
+
+func partialSum(x ...int) func() {
+    sum := 0
+    for _, value := range x {
+        sum += value
+    }
+    return func() {
+        fmt.Println(addHundred(sum))
+    }
+}
+
+func main() {
+    partial := partialSum(1, 2, 3, 4, 5)
+    partial()
+}
+
+===================================================================================================
+Defer Statement:
+1. Adefer statement delays the execution of a function until the surrounding function returns.
+2. The eferred call's arguments are evaluted immediately, but the function call is not executed until the
+    surrounding function returns.
+Tips: If there are many number of defer statements, those defer follows LIFO (Last In First Out) order.

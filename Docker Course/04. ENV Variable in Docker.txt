@@ -1,0 +1,12 @@
+Syntax:
+    docker run -e <env_variable_name>=<valur> <image_name>
+
+To find env_variable_name in running container:
+    >docker inspect <container_name>
+
+Example of setting env_variable_name in code
+color = os.environ.get('APP_COLOR')
+
+Running a container with env var:
+Ex:
+>docker run -e APP_COLOR=blue <container_name>

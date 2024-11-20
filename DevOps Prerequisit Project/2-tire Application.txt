@@ -1,0 +1,69 @@
+All Application on a single server:
+
+FirewallD:
+1. install firewalld
+2. start firewalld
+3. enable firewalld
+4. status firewalld
+
+MariaDB:
+1. sudo yum install -y mariadb-server
+2. sudo systemctl start mariadb
+3. sudo systemctl enable mariadb ---------> to ensure that process is started on server reboot
+
+Config firewall for DB:
+1. sudo firewall-cmd --permanent --zone=public --add-port=3306/tcp
+2. sudo firewall-cmd --reload
+
+Configure Database:
+>sudo mysql
+1. CREATE DATABASE ecomdb;
+2. CREATE USER 'ecomuser'@'localhost' IDENTIFIED BY 'ecompassword';
+3. GRANT ALL PRIVILEGES ON *.* TO 'ecomuser'@'localhost';
+4. FLUSH PRIVILEGES;
+
+To load a sql script into DB server:
+>sudo mysql < /opt/db-load-script.sql
+
+To see all DBs:
+>SHOW DATABASES;
+
+------------------------------------------------------------------------------------------
+Config firewall for DB:
+1. sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
+2. sudo firewall-cmd --reload
+
+
+Make the php page the default page for httpd.
+Update the httpd.conf file to use index.php instead of index.html
+
+>sudo sed -i 's/index.html/index.php/g' /etc/httpd/conf/httpd.conf
+------------------------------------------------------------------------------------------
+Start and enable httpd
+>sudo systemctl start httpd
+>sudo systemctl enable httpd
+------------------------------------------------------------------------------------------
+Download code with git
+GIT repo URL : https://github.com/kodekloudhub/learning-app-ecommerce.git
+target directory : /var/www/html/
+
+>sudo git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html/
+------------------------------------------------------------------------------------------
+Since we have both the web and database on the same server, update the IP address configured in index.php file to localhost.
+Change "172.20.1.101" to "localhost" in index.php file.
+
+>sudo sed -i 's/172.20.1.101/localhost/g' /var/www/html/index.php
+
+
+Database connection error
+1045:Access denied for user ''@'localhost' (using password: NO)
+
+
+
+sudo cat > db-load-script.sql <<-EOF
+USE ecomdb;
+CREATE TABLE products (id mediumint(8) unsigned NOT NULL auto_increment,Name varchar(255) default NULL,Price varchar(255) default NULL, ImageUrl varchar(255) default NULL,PRIMARY KEY (id)) AUTO_INCREMENT=1;
+
+INSERT INTO products (Name,Price,ImageUrl) VALUES ("Laptop","100","c-1.png"),("Drone","200","c-2.png"),("VR","300","c-3.png"),("Tablet","50","c-5.png"),("Watch","90","c-6.png"),("Phone Covers","20","c-7.png"),("Phone","80","c-8.png"),("Laptop","150","c-4.png");
+
+EOF

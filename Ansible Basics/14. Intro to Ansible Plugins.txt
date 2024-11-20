@@ -1,0 +1,44 @@
+Ansible Plugin: A piece of code that modifies the functionality of Ansible.
+                Enhances various aspects of Ansible like Inventory, Modules and Callbacks.
+                Plugins provide flexible and powerful way to customize.
+                Ansible Plugin ca be in the form of Inventory Plugin, Module Plugin, Action Plugin 
+                or Callback Plugin.
+
+Dynamic Inventory Plugin: This plugin will fetch real-time info about your cloud resources directly from your 
+                          cloud provider's API. This dynamic inventory plugin enables you to have an up-to-date 
+                          view of your infrastructure, ensuring accurate and reliable automation.
+
+Module Plugin: When you develop a custom module plugin, you gain the power to provision cloud resources with
+               custom configurations. This plugin integrates seamlessly with your cloud provider's API, allowing 
+               you to create instances with specific AMI versions, instance types and security groups tailored to 
+               your application's requirements. Module Plugin allows you to integrate with a cloud provider's API 
+               for custom resource provisioning.
+
+Action Plugin: This plugin simplifies load balancer management. With an action plugin, you can define high-level 
+               tasks in your playbooks, making it easy to configure load balancing rules, SSL certificates, 
+               and Health checks. The action plugin handeles the underlying API calls and ensures consistent and 
+               reliable load balancer management across your hybrid cloud environment.
+
+Apart from the above plugins, Ansible offers othert plugins that can further extend it's functionality.
+
+Lookup plugins are handy tools that fetch data from external sources like databases or APIs and le3t you use that 
+data within your playbooks.
+
+Filter plugin offer additional data manipulation and transformation capabilities within your playbooks allowing you 
+to modify variables or format output.
+
+Connection plugin enable Ansible to connect and communicate with various target systems such as SSH, WinRM or Docker.
+
+Dynamic Inventory plugins allow Ansible to retrieve inventory info from various sources like cloud providers or config 
+management database.
+
+Callback plugins provide hooks into Ansible's execution lifecycle allowing you to capture events and perform custom 
+actions during playbook execution
+
+=====================================================================================================================
+You've developed a custom module named custom_cloud. To test this module in a playbook named deploy.yml, write a playbook
+---
+- name: Provision custom cloud resource
+  custom_cloud:
+    param1: value1
+    param2: value2

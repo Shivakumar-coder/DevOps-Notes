@@ -1,0 +1,67 @@
+Example of a variable use case:
+
+Playbook.yml
+
+-
+  name: Add DNS server to resolv.conf
+  hosts: localhost
+  vars:
+    dns_server: 10.1.29.301
+  tasks:
+    - lineinfile:
+        path: /etc/resolv.conf
+        line: 'nameserver {{ dns_server }}'
+===========================================================
+Example:
+
+firewall-playbook
+-
+    name: Set Firewall Configurations
+    hosts: web
+    tasks:
+    - firewalld:
+        service: https
+        permanent: true
+        state: enabled
+    
+    - firewalld:
+        port: '{{ http_port }}'/tcp
+        permanent: true
+        state: disabled
+
+    - firewalld:
+        port: '{{ snmp_port }}'/udp
+        permanent: true
+        state: disabled
+
+    - firewalld:
+        port: '{{ inter_ip_range }}'/24
+        Zone: internal
+        state: enabled
+------------------------------------------------------------------------------------------------------------------
+String Variables : String variables in ansible are sequences of characters.
+                    They can be defined in a playbook, inventory or passed as command line arguments.
+                    Example- username: "admin"
+
+Number Variables : Number variables in Ansible can hold integer or floating-point values.
+                    They can be used in mathematical operations.
+                    Example- max_connections: 100
+
+Boolean Variables : Boolean variable in ansible can hold either true or false.
+                    They are often used in conditional statements.
+                    Example- debug_mod: true
+
+List Variables : List variables in ansible can hold an ordered collection of values.
+                 The values can be of any type.
+                 Example- packages:
+                            - nginx
+                            - postgresql
+                            - git
+                        These values can be accessed in this way -----> {{ packages[0] }}
+
+Dictionary Variables : Dictionary variables in ansible can hold a collection of key-value pairs.
+                        The keys and values can be of any type.
+                        Example- user:
+                                    name: "admin"
+                                    password: "secret"
+                                These values can be accessed in this way ----> {{ user.name }}

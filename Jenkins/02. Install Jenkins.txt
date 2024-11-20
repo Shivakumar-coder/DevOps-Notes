@@ -1,0 +1,10 @@
+1. We need to install a JDK and then install jenkins.
+
+2. Start jenkins service >sudo systemctl start jenkins
+
+3. Jenkins UI works on port 8080 by default
+   Open that port >sudo ufu allow 8080
+
+4. Jenkins initally sets a admin password when installed stored in a file
+    sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+

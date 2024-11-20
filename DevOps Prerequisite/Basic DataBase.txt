@@ -1,0 +1,98 @@
+General installation steps:
+
+wget https://<s/w download url>.rpm
+rpm -ivh <s/w>.rpm
+yum install <s/w>
+
+service <s/w> start
+
+===================================================================================
+
+MySQL: Open Source, has community and enterprise versions
+
+The default data directory MySQL uses on most of Linux based systems:
+var/lib/mysql
+
+To install MySQL:
+1. sudo yum install https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+2. sudo yum install mysql-community-server
+
+To start MySQL:
+sudo service mysqld start
+
+To see default password:
+sudo grep 'temporary password' /var/log/mysqld.log
+
+After installation and setup;
+
+To access DB:
+
+To inital login
+>mysql -u root -p<password>
+
+Change password:
+>SET PASSWORD = PASSWORD('<new_password>');
+
+from localhost
+CREATE USER 'john'@'localhost' IDENTIFIED BY 'MyNewPass4!';
+
+from a specific IP address
+CREATE USER 'john'@'<IP address>' IDENTIFIED BY 'MyNewPass4!';
+
+from anywere
+CREATE USER 'john'@'%' IDENTIFIED BY 'MyNewPass4!';
+
+
+To give access:
+GRANT <PERMISSION> ON <DB.TABLE> TO 'john'@'%';
+to grant all access on all tables of a DB:
+>GRANT ALL PRIVILEGES ON kk_db.* TO 'kk_user'@'localhost';
+
+To see access of a user:
+SHOW GRANT FOR 'john'@'localhost';
+
+To see tables of a existing DB:
+>USE <existing_db>;
+>SHOW Tables;
+
+===================================================================================
+
+NoSqL DB :- MongoDB
+
+Store data in document type:
+Example:
+{
+    "name": "John Doe",
+    "age": 45,
+    "loction": "New York"
+}
+
+Multiple document form a collection.
+Multiple collection form a database.
+Multiple database can be hosted in a MongoDB server.
+
+
+To start MongoDB service:
+>systemctl start mongod
+    Check if running:
+    >systemctl status mongod
+
+To find logs:
+>cat /var/log/mongodb/mongod.log
+
+MongoDB Configuration File path: /etc/mongod.conf
+
+To see all database:
+>show dbs
+
+To create and use a database:
+>use <database_name>
+
+To see current db:
+>db
+
+To create a collection:
+>db.createCollection("persons")
+
+To see collection:
+>show collections

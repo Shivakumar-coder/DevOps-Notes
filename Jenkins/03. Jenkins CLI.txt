@@ -1,0 +1,8 @@
+Requirements to use CLI
+
+1. Go to your profile.
+2. Go to config
+3. Scroll to SSH Public Keys
+4. Generate a ssh key and copy the Public key to jenkins ssh Public key.
+
+Connect to jenkins server and install jenkins-cli.jar

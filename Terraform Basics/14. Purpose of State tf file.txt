@@ -1,0 +1,40 @@
+We cannot disable state.
+Terraform init does not refresh the state.
+
+The state file along with resource ids maps to real-world resource also tracks metadata like 
+resource dependencies.
+
+1st use case: Track dependencies.
+    Say, u have deleted the resource and 1 other resource which was dependent on the deleted resource. 
+    At this point of time terraform relies on state file to delete the dependent resource 1st.
+
+2nd use case: Performance.
+    Terraform stores a record of cache of attribute values for all resources in the state and we can specifically make 
+    terraform to refer to the state file alone while running commands and bypass having to refresh state every time.
+    This can be achieved by using -refresh=false flag with all the terraform cmmds that makes use of state.
+    When we run the plan with this flag, you can see that terraform does not refresh state, instead it relies on the 
+    cache attributes.
+
+3rd use case: Collaboration when woring as a team.
+    In a learning purpose it's alright to leave the state file in the same dir. But, in big projects and teams, everyone
+    are required to be updated with latest state file before running terraform and to mae sure that nobody runs terraform 
+    at the same time.
+    If it's done then it may result in unpredictable errors as a consequence.
+    To mitigate this scenario, it's required to store state file in a remote data store rather than to rely 
+    on a local copy.
+
+You don’t learn to walk by 
+following rules. You learn 
+by doing, and falling over.
+– Richard Branson
+
+
+-----------------------------------------------------------------------------------------------------------------
+Terraform State Considerations.
+
+State file stores sensitive data in plain text, every little detail about our infra. Due to this it's 
+not recommended to store this file in any type of version contolled systems like GitHub, BitBucket, etc.
+Instead it's good practice to store it in remote storage unit.
+
+We should not manually attempt to edit the state file by ourselves.
+If we want to edit the state file then it's best to used terraform state cmmds.

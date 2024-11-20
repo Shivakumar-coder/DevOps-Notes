@@ -1,0 +1,44 @@
+Terraform will 1st delete the resource and then recreates that resource which is updated in config file.
+To alter this flow, we can use of life cycle rules.
+
+create_before_destroy: The resource block which has this argument will 1st create the updated resource and 
+                       then destroy previous version resource
+---
+resource "local_file" "pet" {
+    filename="/root/pets.txt"
+    content="We love pets!"
+    file_permission="0700"
+
+    lifecycle {
+        create_before_destroy=true
+    }
+}
+
+prevent_destroy: This is to ensure that any kind of operation involve destroying the resource will be rejected and will 
+                 display a error msg. The resource can still be deleted only if we use destroy command.
+---
+resource "local_file" "pet" {
+    filename="/root/pets.txt"
+    content="We love pets!"
+    file_permission="0700"
+
+    lifecycle {
+        prevent_destroy=true
+    }
+}
+
+ignore_changes: If we have a resource which is set in the 1st apply and under ignore_changes rule, then terraform will 
+                note this change and revert the made changes.
+---
+resource "aws_instance" "webserver" {
+    ami="ami-27tvt8v7t02tv80"
+    instance_type="t2.micro"
+    tags={
+        Name="ProjectA-Webserver"
+    }
+    lifecycle {
+        ignore_changes=[
+            tags
+        ]
+    }
+}

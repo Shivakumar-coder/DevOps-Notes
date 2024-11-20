@@ -1,0 +1,16 @@
+Integer to Float :
+var i int = 90
+var f float64 = float64(i)
+fmt.Printf("%.2f\n", f)
+
+
+Float to Integer
+var f float64 = 45.89
+var i int = int(f)
+fmt.Printf("%v\n", i)
+
+
+
+strconv package
+Itoa:
+Atoi

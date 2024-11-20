@@ -1,0 +1,37 @@
+Syntax:
+function <function_name>() {
+    <commands>
+}
+-----------------------------
+Ex:
+function launch-rocket() {
+    mission_name=$1
+    .
+    .
+    .
+}
+
+launch-rocket lunar-mission
+
+In the above example the function launch-rocket is all with argument lunar-mission, 
+that lunar-mission is accepted by the function as command line argument
+
+A function will return 1 if successful. If a exit cmd is used in place of return, 
+then the script stops execution.
+
+The return statement will only return a number but not a string.
+The return will mainly be used to return exit status.
+
+The function block should always be written at the start of each file and before that function is called.
+
+Ex:
+function add()
+{ 
+  sum=$(( $1 + $2 ))
+  echo $sum
+}
+
+result=$(add 3 5)
+echo "The result is $result"
+
+Answer: The function must echo the result so that it can be captured in the result variable.

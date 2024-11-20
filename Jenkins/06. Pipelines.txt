@@ -1,0 +1,90 @@
+Jenkins file is pipeline template.
+
+
+pipeline { ------------------------> The task you are trying to accomplish
+    agent any ---------------------> Built Agent
+    tools {
+        go 'go-1.17'
+    }
+
+    environment {
+        GO111MODULE='on'
+    }
+
+    stages { ----------------------> Stages: In which stage we need the deployment; like dev stage, prod, UAT, QA, etc.
+        stage('<name>') {
+            steps { --------------->
+                <commands>
+            }
+        }
+    }
+}
+--------------------------------------Example Jenkins file--------------------------------------
+pipeline {
+    agent {
+        label {
+            label 'master'
+            customWorkspace "${JENKINS_HOME}/${BUILD_NUMBER}/"
+        }
+    }
+    environment {
+        Go111MODULE='on'
+    }
+    stages {
+        stage('Test') {
+            steps {
+                git 'https://github.com/kodekloudhub/go-webapp-sample.git'
+            }
+        }
+        stage('build') {
+            steps {
+                script{
+                    image = docker.build("adminturneddevops/go-webapp-sample")
+                    sh "docker run -p 8090:8000 -d adminturneddevops/go-webapp-sample"
+                }
+            }
+        }
+    }
+}
+
+Types of Pipeline Projects:
+1. Scripted Pipeline:
+    Requires codeing knowledge, typically groovy.
+    This offers the most control and flexibility and power over complex logic, conditional execution and customization.
+    The Jenkins file script allows for defining complex logic and automation tailored to our specific needs.
+    The Scripted pipelines require writing a complete Groovy script Jenkinsfile to define all stages and steps 
+        of your workflow.
+
+2. Declarative Pipeline:
+    It's human readable
+    Easier to learn
+    Limited complexity
+    Might not be suitable for highly complex workflows that require extensive scripting for conditional logic 
+        or custom actions.
+
+Jenkinsfile Directives:
+
+1. Environment Directive: This will define key value pairs to set environment variables for all stages or for specific 
+        stages depending on the placement.
+
+2. Post Directive: This will execute one or more steps after a pipeline run finishes regardless of the success or failure 
+        of the pipeline status.
+
+3. Notification Directive: To nofify about the pipeline status
+
+4. Script Block Directive: The script directive can be used to encapsulate a block of groovy code for more complex logic 
+        within a stage step.
+
+5. When Directive: This directive defines conditions under which a stage should be executed.
+
+6. Credential Directive: This directive provides access to predefined Credentials stored in Jenkins like the API keys, 
+        passwords or any other secret files. It can be used with tools or script that require authentication.
+
+7. Input Directive: This directive alloes users to provide input during pipeline execution through an UI.
+
+8. Parameters Directive: This directive can be used for defining parameters that can be passed to the pipeline 
+        during execution allowing for dynamic configuration.
+
+9. stash/unstash Directive: This directive can store and retrieve the artifacts.
+
+10. Parallel Stage Directive: This will help us to optimize pipeline execution time.

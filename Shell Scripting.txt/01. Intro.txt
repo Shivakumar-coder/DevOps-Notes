@@ -1,0 +1,14 @@
+Two ways to run shell script.
+1. bash <script_name>.sh
+2. Create your own executable command.
+
+Before setting a executable command u need to change the file permission so that the .sh file has x bit (executable bit)
+Ex:
+chmod +x <shell-script name>
+
+To execute a script as a command. Add the script containing dir to the $PATH
+Ex:
+echo $PATH
+>>/user/local/sbin............................
+
+export PATH=$PATH:<dir_name containing shell script>

@@ -1,0 +1,31 @@
+Docker n/w:
+    Bridge n/w ; Default  n/w
+    none n/w
+    host n/w
+
+If you want to associate the container with any other n/w, you can specify the n/w info using the n/w command line 
+parameter
+>docker run ubuntu --network=none
+>docker run ubuntu --network=host
+
+Docker has it's own DNS server called Embedded DNS hosted at IP 127.0.0.11
+
+
+>docker network ls ------------> list all the n/w in the Docker
+
+
+> docker network inspect bridge ----------------> detail of bridge n/w
+
+Create our own internal n/w using the command and specify the driver
+>docker network create \
+    --driver bridge \
+    --subnet 182.18.0.0/16
+    custome-isolated-network
+
+All containers in a docker host can resolve each other with the name of the container. Docker build-in DNS server will 
+help the containers to resolve each other using the container name.
+
+
+Create a network subnet inside docker:
+Example:
+ >docker network create --driver bridge --subnet 182.18.0.1/24 --gateway 182.18.0.1 wp-mysql-network

@@ -1,0 +1,32 @@
+Terraform state file should not be edited with any editor or make any type of changes manualy.
+Instead we should make use of Terraform state command.
+
+Syntax:
+terraform state <subcommand> [options] [args]
+
+List: This will list all the resources recorded within the Terraform state file.
+terraform state list [options] [address]
+
+terraform state list show command: This command will show the attributes of a single resource in the 
+        state file that matches the given address.
+    Ex: >terraform state show aws_s3 
+
+
+Move command: This command is used to move items in a Terraform state file. The items can be moved within the 
+              same state file, which would mean moving a resource from it's current resource address to another, 
+              which essentially means renaming a resource or it can move items from one state file to another 
+              state file maintained by a different config dir completely.
+    Syntax: terraform state mv [options] SOURCE DESTINATION
+    Ex:
+    >terraform state mv aws_dynamodb_table.state-locking aws_dynamodb_table.state-locking-db
+    This will change the name of the resource in the state file but not in config file which we wrote.
+    We need to manualy change the name in the config file.
+
+
+Terraform state pull: This command helps us to download and display the remote state on the screen
+    Syntax: terraform state pull
+
+State remove: It is used to delete items from the Terraform state file. This command is used when you no longer wish 
+              to manage one or more resources via the current Terraform configuration and state. The resource removed 
+              are not actually destroyed from the real world infra.
+    Syntax: terraform state rm [resource-address]

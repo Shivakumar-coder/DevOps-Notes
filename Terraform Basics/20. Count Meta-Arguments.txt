@@ -1,0 +1,35 @@
+Count Meta-Argument: One of the easiest way to create multiple instance of the same resource is 
+                     to use count argument with value greater than 1.
+                     This will create an array of same resource type with index value starting at 0.
+            Example: 
+            ---
+            variable "filename" {
+                default = [
+                    "/root/pets.txt"
+                ]
+            }
+            ---
+            resource "local_file" "pet" {
+                filename = var.filename
+                count = 3
+            }
+            After terraform apply cmmd, the resource created will be pet[0], pet[1] and pet[2].
+            But the name of the file will not be changed i.e all the files will have name pets.
+
+            To over come this, use count.index attribute.
+            ---
+            variable "filename" {
+                default = [
+                    "/root/pets.txt",
+                    "/root/dogs.txt",
+                    "/root/cats.txt"
+                ]
+            }
+            ---
+            resource "local_file" "pet" {
+                filename = var.filename[count.index]
+                count = 3
+            }
+
+            If there is any change in the variable config file, then terraform will recreate each and every 
+            resource.

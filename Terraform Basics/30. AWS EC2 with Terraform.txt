@@ -1,0 +1,84 @@
+AWS EC2 instance config file
+---main.tf---
+resource "aws_instance" "webserver" {
+    ami = "ami-but4ub3tutub"
+    instance_type = "t2.micro"
+    tags = {
+        Nmae = "webserver"
+        Description = "An Nginx WebServer on Ubuntu"
+    }
+    user_data = <<-EOF
+                #!/bin/bash
+                sudo apt update
+                sudo apt install nginx -y
+                systemctl enable nginx
+                systemctl start nginx
+                EOF
+    key_name = aws_key_pair.web.id
+
+    vpc_security_group_ids = [ aws_security_group.ssh-access.id ]
+}
+
+resource "aws_key_pair" "web" {
+    public_key = file("/root/.ssh/web.pub")
+}
+
+resource "aws_security_group" "ssh-access" {
+    name = "ssh-access"
+    description = "AllowSSH access from the Internet"
+    ingress {
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+}
+
+output publicip {
+    value = aws_instance.webserver.public_ip
+}
+
+Provisioner: This block will provide a way for us to carry out tasks such as running commands or scripts on 
+             remote resources or locally where Terraform is installed. 
+    Ex: To run a bash script after a resource is created, we can make use of the remote exec provisioner.
+    ---
+    provisioner "remote-exec" {
+        inline = [
+            "sudo apt update",
+            "sudo apt install nginx -y",
+            "sudo systemctl enable nginx",
+            "sudo systemctl start nginx"
+        ]
+    }
+
+    connection {
+        type = "ssh"
+        host = self.public_ip
+        user = "ubuntu"
+        private_key = file("/root/.ssh/web")
+    }
+
+    local exec provisioner: This is run the machine were Terraform binary and not on the resources which are created 
+    by Terraform. This is useful when we want to gather some kind of data and write into a file locally.
+    Ex:
+    ---
+    provisioner "local-exec" {
+        command = "echo ${aws_instance.webserver.public_ip} >> /tmp/ips.txt"
+    }
+
+provisioner
+---
+resource "aws_eip" "eip" {
+    vpc = "true"
+    instance = aws_instance.cerberus.id
+    provisioner "local-exec" {
+      command = "echo ${aws_eip.eip.public_dns} >> /root/cerberus_public_dns.txt"
+    }
+  
+}
+
+
+"
+Don't just think, do.
+"
+– Horace

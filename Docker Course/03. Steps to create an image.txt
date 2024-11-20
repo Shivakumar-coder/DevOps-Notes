@@ -1,0 +1,38 @@
+OS
+Update apt repo
+Install dependencies using apt
+Install program dependencies using pip
+Copy source code to /opt folder
+Run the web server.
+-------------------------------------------------------------------
+All the above can be written in docker file
+Dockerfile is a Instruction Argument type of file
+
+Ex:
+    FROM Ubuntu <---Argument
+     ^---Instruction
+
+Ex:
+FROM Ubuntu
+
+RUN apt-get update
+RUN apt-get install python
+
+RUN pip install flask
+RUN pip install flask-mysql
+
+COPY . /opt/source-code
+
+ENTRYPOINT FLASK_APP=/opt/source-code/app.py flask run
+
+
+Ex Build a image:
+    docker build Dockerfile -t <tag-name>
+
+
+
+Docker builds the image in a layered architecture.
+Since each layer only contains the changes done to it from previous layer and current layer, it will not consume 
+unnecessary storage space.
+To view this space consumption, we can run this command with the image_name
+    >docker history <image_name>

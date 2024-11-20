@@ -1,0 +1,33 @@
+Start a container:
+    >docker run <container_image_name>
+
+List container:
+    >docker ps (List all running containers)
+    >docker ps -a (List all containers which are present)
+
+Stop a container:
+    >docker stop <container_name>
+
+Remove a container
+    >docker rm <container_image_name> (will stop a container if running and delete it)
+
+List Images
+    >docker images(will list all images with it's size)
+
+Remove images
+    >docker rmi <image_name>(all running containers off this image should be stopped or deleted)
+
+Download an image
+    >docker pull <image_name>(will only pull the image and will not run any container of it)
+
+Start a container with name in detach mode:
+    >docker run -d --name <given_name> <image_name>
+
+Command to find the base OS of a image:
+    >docker run <image_name> cat /etc/*release*
+
+Command to run container with name:
+    >docker run --name <name> <image_name>
+
+Execute a command on a running container
+    >docker exec <container_name> <command_to_be_executed>

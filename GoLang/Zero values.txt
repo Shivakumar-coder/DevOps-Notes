@@ -1,0 +1,7 @@
+When variables are declared but not initialized, then a defauld value is allcated called zero value.
+Each data type has it's own zero value
+bool- false
+int-0
+float64- 0.0
+string- ""
+pointers, functions, maps- nil

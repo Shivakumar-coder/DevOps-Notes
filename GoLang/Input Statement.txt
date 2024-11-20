@@ -1,0 +1,17 @@
+package main
+import ("fmt")
+
+func main() {
+
+    var name string
+    var is_muggle bool
+
+    fmt.Print("Enter your name & are you a muggle: ")
+    fmt.Scanf("%s %t", &name, &is_muggle)
+
+    fmt.Println(name, is_muggle)
+}
+
+Scanf returns 2 values:
+count: the number of arguments that the function writes to successfully
+err : any error thrown during the execution of the function

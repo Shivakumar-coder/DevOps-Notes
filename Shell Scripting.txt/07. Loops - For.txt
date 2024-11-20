@@ -1,0 +1,56 @@
+Syntax:
+for <element_variable> in var1 var2 var3 ..............
+do
+    command $<element_variable>
+done
+=====================================================================================
+Ex:
+for mission in $(cat mission-name.txt)
+do
+    bash /home/bob/create-and-launch-rocket $mission
+done
+----------------->here mission-name.txt will contain the list of mission names
+$ cat mission-name.txt
+lunar-mission
+jupiter-mission
+saturn-mission
+satellite-mission
+=====================================================================================
+Ex:
+for mission in 1 2 3 4 5 6
+do
+    bash /home/bob/create-and-launch-rocket mission-$mission
+done
+=====================================================================================
+Ex: Sequence
+for mission in {0..100}
+do
+    bash /home/bob/create-and-launch-rocket mission-$mission
+done
+=====================================================================================
+Ex: programming language like for loop
+for (( mission = 0 ; mission <= 100 ; mission++ ))
+do
+    bash /home/bob/create-and-launch-rocket mission-$mission
+done
+
+=====================================================================================
+We have some images under the directory /home/bob/images.
+Develop a script /home/bob/rename-images.sh to rename all files within the images folder that has extension jpeg to jpg.
+A file with any other extension should remain the same.
+
+Tip: Use a for loop to iterate over the files within /home/bob/images
+Tip: Use an if conditional to check if the file extension is jpeg.
+Tip: Use mv to rename a file.
+
+To replace jpeg to jpg in a filename use echo user1.jpeg | sed 's/jpeg/jpg/g'.
+
+Code:
+for file in $(ls images)
+do
+        if [[ $file = *.jpeg ]]
+                then
+                new_name=$(echo $file| sed 's/jpeg/jpg/g')
+                mv images/$file images/$new_name
+        fi
+done

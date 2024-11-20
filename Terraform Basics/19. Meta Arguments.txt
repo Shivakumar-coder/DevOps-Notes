@@ -1,0 +1,5 @@
+Meta-Arguments: Meta arguments can be used within any resource block to change the behaviour the 
+resources. Some examples of the meta arguments are depents_on and lifecycle_rules.
+
+Let's say you want an identical resource in n numbers, then instead of writing the same resource block n times, 
+we can simply use meta-arguments and reduce the redundancy of the code.

@@ -1,0 +1,62 @@
+To access aws programmaticaly we need to have Access Key ID and Secret Access Key.
+Both needs to be created by admin and given to you.
+To support AWS programmatic access, we need to install AWS CLI.
+After installing the AWS CLI we need to config AWS CLI with Access Key ID and Access Key.
+>aws configure
+AWS Access Key ID [None]: <key_id>
+AWS Secret Access Key [None]: <key>
+Default region name [None]: <region_closest_to_developer>
+Default output format [None]: <json or yaml or xml ... etc>
+
+The id and key are stored in a hidden dir .aws/config/config
+
+AWS command syntax
+>aws <command> <subcommand> [options and parameters]
+
+"
+Study hard what interests 
+you the most in the most 
+undisciplined, irreverent and 
+original manner possible.
+"
+– Richard P. Feynman
+
+
+Create user in aws cli:
+>aws --endpoint http://aws:4566 iam create-user --user-name mary
+
+What is the default region that has been configured for use with the AWS CLI ?
+>cat /root/.aws/config
+
+What is the aws_access_key_id used in the configuration ?
+>cat /root/.aws/credentials
+
+
+
+
+
+Now that we have a few users created, let's grant them privileges.
+Let's start with mary, grant her full administrator access by making use of the 
+policy called AdministratorAccess.
+
+
+Make use of the subcommand attach-user-policy.
+The ARN of the AdministratorAccess policy is arn:aws:iam::aws:policy/AdministratorAccess.
+>aws --endpoint http://aws:4566 iam attach-user-policy --user-name mary --policy-arn arn:aws:iam::aws:poli
+cy/AdministratorAccess
+
+
+Use the subcommand create-group to create the group.
+>aws --endpoint http://aws:4566 iam create-group --group-name project-sapphire-developers
+
+
+Add the IAM users called jack and jill, who are developers to the new IAM 
+Group called project-sapphire-developers.
+
+Use the subcommand add-user-to-group to add users into the group.
+>aws --endpoint http://aws:4566 iam add-user-to-group --user-name jack --group-name project-sapphire-developers
+
+Attach the AmazonEC2FullAccess policy with the ARN: 
+arn:aws:iam::aws:policy/AmazonEC2FullAccess to the group project-sapphire-developers.
+>aws --endpoint http://aws:4566 iam attach-group-policy --group-name project-
+sapphire-developers  --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess

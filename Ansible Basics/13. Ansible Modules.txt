@@ -1,0 +1,35 @@
+Modules: Ansible modules are catagorized into various groups based on their functionality.
+         Below are the few basic modules, but there are more which can be found in documentation.
+
+
+Command Module: The command module is used to execute a command on a remote node.
+=====================================================================================================================
+Script Module: The script module executes a script which is located locally on the Ansible controller 
+               machine on one or more remote nodes after transferring it over.
+=====================================================================================================================
+Service Module: The service module is used to maintain services on a system, such as starting, stopping or 
+                restarting a service.
+Example:
+---
+-
+  name: Start Services in order
+  hosts: localhost
+  tasks:
+   - name: Start the database service
+     service: name=postgresql state=started -------> here we are ensureing the service is 'started'
+
+   - name: Start the nginx service
+     service:
+       name: nginx
+       state: started
+=====================================================================================================================
+lineinfile: This module is used to find a line in a file and replace it or add it if it doesn't already exist.
+Example:
+---
+- 
+  name: Add DNS server to resolv.conf
+  hosts: localhost
+  tasks:
+   - lineinfile:
+        path: /etc/resolv.conf
+        line: 'nameserver 10.1.250.10'

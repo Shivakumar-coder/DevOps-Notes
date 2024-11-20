@@ -1,0 +1,45 @@
+Dictionaries are key value paris
+
+Ex:
+usernames = {
+    "lydia" : "lydiahallie",
+    "sarah" : "sarah123",
+    "max" : "max_",
+    "joe" : "joejoe"
+}
+--------------------------------------------------------------------------------------
+Dictionarie Methods:
+1. keys: will return all the keys of the dictionarie
+Ex:
+print(usernames.keys())
+dict_keys(['lydia', 'sarah', 'max', 'joe'])
+
+2. values: same as keys, but prients values of a dictionarie
+Ex:
+print(['lydiahallie', 'sarah123', 'max_', 'joejoe'])
+
+3. items: will return the dictionarie which contains key value pairs as tuple
+--------------------------------------------------------------------------------------
+Update a value:
+Ex:
+usernames[max] = "max123"
+
+Add a pair:
+Ex:
+usernames.update({"chloe": "chloe123"})
+
+Delete a pair:
+Ex:
+del usernames["max"]
+
+Clear all pairs
+Ex:
+usernames.clear()
+
+Delete last item:
+Ex:
+usernames.popitem()
+
+Copy a dictionarie
+Ex:
+usernames_copy = usernames.copy()

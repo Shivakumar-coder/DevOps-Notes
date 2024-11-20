@@ -1,0 +1,11 @@
+Jenkins stores it's data primarily in $JENKINS_HOME folder.
+
+1. Jenkins Home dir stores config file called config.xml which tells who jenkins is.
+2. Jenkins Home dir stores jobs folder which stores all the pipelines.
+
+There are different ways to backup.
+1. File backup
+2. Plugin backup
+3. shell script backup Ex: GitHub repo------> sue445/jenkins-backup-script
+
+With Plugin: Create a dir in a server 

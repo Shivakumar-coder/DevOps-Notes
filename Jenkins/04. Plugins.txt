@@ -1,0 +1,21 @@
+Plugins help us to connect to other services and make use of that services.
+
+Jenkins plugins can be installed even after jenkins is deployed.
+This can be done in Plugins Index of official jenkins website.
+
+Some plugins require restart.
+> sudo systemctl restart jenkins
+
+
+java -jar jenkins-cli.jar -s http://localhost:8085 -auth 'admin:Adm!n321' install-plugin cloudbees-bitbucket-branch-source
+
+java -jar jenkins-cli.jar -s http://localhost:8085 -auth 'admin:Adm!n321' disable-plugin github -restart -r
+
+Configure system is were jenkins config UI is present
+"
+The things always happens that 
+you really believe in; 
+and the belief in a thing 
+makes it happen.
+"
+– Frank Lloyd Wright

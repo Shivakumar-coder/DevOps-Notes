@@ -1,0 +1,19 @@
+A method augments a function by adding an extra parameter section immediately after 'func'
+keyword that accepts a single argument.
+
+This argument is called a 'receiver'.
+
+A method is a function that has a defined receiver.
+
+Syntax:
+func (<receiver>) <method_name>(<parameters>) <return_params> {
+    //code
+}
+Ex:
+func (c Circle) area() float64 {
+    //code
+}
+=========================================================================================================
+Method sets:
+-- Set of methods that are available to a data type.
+-- Useful way to encapsulate functionality.

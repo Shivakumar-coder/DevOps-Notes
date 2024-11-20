@@ -1,0 +1,7 @@
+$ apt-get install shellcheck
+
+        OR
+
+$ yum install shellcheck
+
+This will check for any errors related to syntax.

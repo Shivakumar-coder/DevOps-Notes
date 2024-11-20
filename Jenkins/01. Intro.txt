@@ -1,0 +1,29 @@
+Challenges Jenkins solves:
+1. Slower Releases
+2. Manual Builds
+3. Non repeatable processes
+4. No automations
+
+Continuous Integration (CI) :
+Takeing code repo and packageing it for next process (mostlly to deployment).
+In this stage, unit tests will be done and all other kinds of test like integration tests, etc.
+All kinds of security checks will be done.
+
+Continuous Delivery (CD) :
+There is manual intervention. Like click a button on Jenkins to get deployment started.
+
+Continuous Deployment (CD) :
+There is no manual intervention, every think is automated.
+
+Install Jenkins:
+Java should be installed before Jenkins is installed.
+
+to login to jenkins with CLI:
+ssh -i /home/mike/.ssh/jenkins_key -l mike -p 8022 jenkins-server help
+
+Min Requirement:
+1. 2 core CPU
+2. 256MB RAM
+3. 1GB Disk Space
+4. Web browser
+5. JDK or JRE

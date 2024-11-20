@@ -1,0 +1,6 @@
+Ex:
+
+codes := make(map[string]int)
+codes["A"] = 1
+codes["B"] = 2
+delete(codes, "B")

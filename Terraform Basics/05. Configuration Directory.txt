@@ -1,0 +1,9 @@
+Usually a single config file may contain n number of congif blocks.
+A cmmn nameing convention is to name it as main.tf for such type of files
+
+Other types of logical files are:
+1. variables.tf: Contains variable declarations
+2. outputs.tf: Contains outputs from resources
+3. provider.tf: Contains provider definition
+
+4. main.tf: Main configuration file containing resource definition

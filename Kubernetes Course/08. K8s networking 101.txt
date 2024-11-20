@@ -1,0 +1,6 @@
+Each pod in the node has 1 IP address assigned to it.
+
+K8s does not automatically set up any type of n/w-ing.
+K8s expects us to set up n/w-ing to meet certain fundamental requirement.
+1. All the containers/pods in the K8s cluster must be able to communicate with one another without having to config NAT
+2. All the nodes must be able to communicate with containers and vice-versa without NAT.

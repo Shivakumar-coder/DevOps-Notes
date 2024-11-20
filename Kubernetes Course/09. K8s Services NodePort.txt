@@ -1,0 +1,78 @@
+K8s Services: K8s services enable communications between various components within and outside of the application.
+                K8s services helps us to connect applications together with other applications or users.
+                Example: Our application has groups of pods running various sections such  as a group for serving 
+                         front-end load to users and other group for running backend processes and a 3rd group connecting 
+                        to an external data source. Here it is services that enable connectivity between these groups of pods.
+            Thus services enable loose coupling between microservices in our application.
+
+
+Service - NodePort : This is a service which will opens a port on the pod and manages the requestes comeing to the pod.
+                     This service is in fact like a virtual server inside the node. Inside the cluster, it has it's own 
+                     IP address which is called the cluster IP of the service. The port on the node itself which we use to 
+                     access the pod externally and that is known as the node port.
+                        NodePort can only be in a valid range between 30000 to 32767.
+Example: Let us assume that the webapp is hosted on port 80 of the pod. Then
+    Port 80 on the pod will be TargetPort---->(1)
+    If this is not written in the defin file then it will take the value as that of the service port.
+
+    The NodePort service also has a port open, consider that to be port 80---->(2)
+    The NodePort service now can be mapped to the port on the pod i.e TargetPort.
+    This is the only mandatory field in the defin file
+
+    The port 30008 on the node connected to the nodeport service is called NodePort--->(3)
+    If this is not mentioned then a random port which is free is assigned as a node port.
+
+Service yaml file Example.
+
+apiVersion: v1
+kind: Service
+metadata;
+  name: myapp-service
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 80
+      port: 80
+      nodePort: 30008
+  selector:
+    app: myapp
+    type: front-end
+===============================
+apiVersion: v1
+kind: Service
+metadata;
+  name: myapp-service
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+  selector:
+    app: myapp
+    type: front-end
+
+
+To create a service:
+>kubectl create -f <service-file>.yml
+
+To see all the services:
+>kubectl get services
+
+To see service config file:
+>kubectl describe service
+
+
+
+==========Example==================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - nodePort: 30080
+    port: 8080
+    targetPort: 8080
+  selector:
+    name: simple-webapp

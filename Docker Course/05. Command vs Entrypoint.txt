@@ -1,0 +1,35 @@
+In Dockerfile:
+
+For the use of command
+    Example-
+        FROM Ubuntu
+                      |----Paramater 
+        CMD ["sleep","5"]
+                ^---------command
+                or
+        CMD sleep 5 (this way of setting CMD is not appreciated)
+
+    Running this container:
+    docker run Ubuntu-sleeper
+
+For the use of entrypoint: When the image starts, from that point of time we need that container to run a cmmd automatically
+without any manual intervention. For this use case, we have ENTRYPOINT.
+    Example-
+        FROM Ubuntu
+        ENTRYPOINT ["sleep"]
+    
+    Running this container:
+    docker run Ubuntu-sleeper 10
+    docker run Ubuntu-sleeper --------------> running this command will result in error as there is no paramater for sleep
+    ^^to over come this use both CMD and ENTRYPOINT
+
+For the use of both CMD and ENTRYPOINT:
+    Example-
+        FROM Ubuntu
+
+        ENTRYPOINT ["sleep"]
+
+        CMD ["5"]
+
+To override the entrypoint cmmd, user below docker command
+>docker run --entrypoint <command> <image_name> <paramater>

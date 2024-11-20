@@ -1,0 +1,25 @@
+Infrastructure as Code(IaC): To deploy a resources by running a script or a code is called IaC
+
+Types of IaC Tools:
+1. Configuration Management: To install and manage s/w on existing infra. The config management tools 
+                             help in maintaining a consistent and a standard structure of code. Whith this 
+                             it's easier to manage and update it as needed.
+    a. Ansible.
+    b. Puppet.
+    c. SaltStack.
+    d. Chef
+
+2. Server Templating: Say you have done a update of a config for a s/w with config management tool. Now you 
+                      need to deploy that changed config, this is were server templating comes into picture.
+                      This will updated the config and create a new image with which it's easy to deploy the 
+                      update on a large scale ASAP with easy.
+    a. Docker
+    b. Packer( by HashiCorp ).
+    c. Vagrant( by HashiCorp ).
+
+3. Infrastructure Provisioning Tools: These tools are used to provision infra components using a simple 
+                                      declarative code. These infra components can range from servers such 
+                                      as VMs, DBs, VPCs, subnets, SGs, storage and just about any services based
+                                      on the provider we choose.
+    a. Terraform( by HashiCorp ).
+    b. CloudFormation.

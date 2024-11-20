@@ -1,0 +1,20 @@
+The HCL file consists of Blocks and Arguments. The arguments consists of key value pair within {} brackets 
+representing the config data.
+Syntax:
+<block> <parameters> {
+    key1=value1
+    key2=value2
+}
+
+A block in Terraform contains info about the infra platform and a set of resources within the platform that 
+we want to create.
+
+local.tf
+---------------
+resource "local_file" "pet" {
+    filename="/root/pets.txt"
+    content="We love pets!"
+}
+
+Here resource is a block name, local_file is the resource type and pet is the resource name both of which are
+parameters. The data inside {} are arguments.

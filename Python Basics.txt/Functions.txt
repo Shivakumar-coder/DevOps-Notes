@@ -1,0 +1,14 @@
+def print_num(num):
+  num = 20
+  print(num)
+
+num = 10
+print(num)
+print("Func is calld ", print_num(num))
+print(num)
+
+O/P:
+10
+20
+Func is calld  None
+10

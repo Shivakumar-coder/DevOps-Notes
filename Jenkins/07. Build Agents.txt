@@ -1,0 +1,44 @@
+All the jenkins server which has main controller and slave jenkins build agent 
+should have the same java versions installed.
+
+Built Agents are task executers, they will fullfil the task written in jenkins file.
+Built Agent can we set up in any type of platform but, needs to have java installed with the same version as master node.
+
+Recommended Practice: To set up master and agent in different machines.
+
+Layers:
+1. Jenkins Master Node : Used to install and config jenkins, build pipelines, create jobs, etc.
+2. Jenkins Worker Node : Worker node can be linux server or docker, windows server or docker.
+3. Agents : Will be configured inside master or worker nodes, used to execute tasks.
+4. Executers : These are the once which will actually do the tasks and fullfil the tasks.
+
+
+Login into the Jenkins server and follow the below given steps to Create a Permanent Agent type agent node named linux-node:
+
+1. Now go to Manage Jenkins.
+
+2. Click on Nodes and Clouds option under System Configuration.
+
+3. From the option available on the right side, click on New Node button.
+
+4. Enter the Node name i.e linux-node.
+
+5. Enable Permanent Agent option and click on OK.
+
+6. Enter /home/bob under Remote root directory.
+
+7. Enter node01 under Labels.
+
+8. Select Only build jobs with label expressions matching this node option for Usage.
+
+9. Select Launch Agents via SSH under Launch method.
+
+10. Enter node01 under Host and select the credentials you created in the previous question.
+
+11. Under Host Key Verification Strategy, select Non verifying verification strategy.
+
+12. Leave all other options as it is and click on Save
+
+13. Click on the linux-node and there shouldn't be any errors.
+
+14. Just in case the linux-node node is in error state, then try to relaunch it.

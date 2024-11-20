@@ -1,0 +1,64 @@
+Error :
+if{
+
+}
+else {
+
+}
+------------------------------------------
+Type 1 :
+if {
+
+}
+------------------------------------------
+Type 2 :
+if {
+
+} else if {
+
+} else {
+
+}
+------------------------------------------
+Type 3 :
+if {
+
+} else {
+
+}
+------------------------------------------
+switch statements :
+switch expression {
+    case value_1:
+        statements
+    case value_2:
+        statements
+    default:
+        statements
+}
+------------------------------------------
+switch with fallthrough :
+switch condition {
+    case condition:
+        statements
+    case condition:
+        statements
+        fallthrough
+    case condition:
+        statements
+        fallthrough
+    default:
+        statements
+}
+when the controller encounters fallthrough, it will even execute next case statement even if the case value dosen't matches
+------------------------------------------
+
+switch with condition statements :
+switch {
+    case condition:
+        statements
+    case condition:
+        statements
+    default:
+        statements
+}

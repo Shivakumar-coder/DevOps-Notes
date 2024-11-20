@@ -1,0 +1,37 @@
+Terraform does not impose any law on the number resource in a config file.
+
+But we can also split the config into multiple files within the config dir and things will work the same 
+as all resource in a single config file. Even this will not solve few core disadvantages of the IaC.
+
+There are few disadvantage in following the old way of writting IaC.
+1. It will not resolve the complexity of the code that is written within the config dir or duplicaion problem.
+2. It will become increasingly difficult to update a resource.
+3. This type of config will severely limits the reusablity.
+
+All these disadvantages can be overcome by making use of Module in terraform.
+Any type of dir which consists a set of config files is called a module.
+
+Ex: 
+1. Let's say we have a config dir which consists of aws-instance creation config files. Since this dir consists of 
+   aws terraform files, this qualifies as a module. Now if we run terraform cmmds in it, this dir can now be considered to
+   be root module.
+2. Now we will create another dir ||lel to aws-instance dir called development. Now if we want to use that aws-instance 
+   terraform IaC, we can write a module block in development dir to make use of aws-instance module.
+   ---
+   module "dev-webserver" {
+      source = "../aws-instance" // path were aws-instance resource block is written
+   }
+   By this way, now if we run terraform cmmds in this dir, this will gain the status of root module and 
+   aws-instance dir will become child module.
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Using Modules from Terraform Registry:
+Write the module block in your config dir. If the module is downloaded, then terraform will make use of this module, 
+else, when we run init cmmd, terraform will downloaded the module from terraform registry.
+
+"
+You never know what you 
+can do until you try.
+"
+– William Cobbett

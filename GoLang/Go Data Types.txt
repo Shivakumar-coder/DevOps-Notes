@@ -1,0 +1,39 @@
+=============================================Intro=======================================================
+
+String : Th3e
+Integer : 1234
+Float : 89.05
+Boolean  : true or false
+Arrays : [1,2,3]
+Slice : are like Arrays but give more control over memory allocation.
+Maps : key alue pare- "abc" -> 5
+
+Go is a fast, statically typed, compiled language that feels like a dynamically typed, interpreted language.
+
+Short variable declaration:
+Ex:
+package main
+import ("fmt")
+
+func main() {
+    name:= "Lisa"
+    fmt.Println(name)
+}
+
+=============================================Kinds of Data type=============================================
+Numbers:  Integer and Float
+
+Integer:-
+1. int = for both signed and unsigned number.
+2. uint = signed int, can only hold +ve number.
+
+Float:-
+float32 : 32 bit- single precission
+float64 : 64 bit- double precission
+
+
+Strings: 16 bytes
+key word = string
+
+Boolean:
+key word = bool

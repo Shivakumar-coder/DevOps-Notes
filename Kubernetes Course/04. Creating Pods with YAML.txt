@@ -1,0 +1,26 @@
+K8s use YAML file as inputs for the creation of objects such as POD's, replicas, deployment services, etc.
+
+A K8s defination file always contains 4 root level fields.
+
+apiVersion: This can be v1, apps/v1. This is a string value.
+
+kind: This can be Pod, Service, ReplicaSet, Deployment. This is a string value.
+
+metadata: This is the data about the object such as name, labels, etc. This is a Dictionary
+
+spec: Depending upon the type of object mentioned in the kind. We will give more info in this section 
+      so that K8s will create that object. This a Dictionary of list.
+
+Example-
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis
+spec:
+  containers:
+    - name: redis-container
+      image: redis123
+
+
+cmmd to create a pod with yaml file:
+>kubectl create -f <file-name>.yml

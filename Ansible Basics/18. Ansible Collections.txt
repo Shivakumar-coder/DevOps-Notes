@@ -1,0 +1,51 @@
+Ansible Collections: They are a way to package and distribute Ansible content, including modules, 
+                     roles, plugins and other related assets.
+                     A collection is a self-contained unit that encapsulates these components and 
+                     making them easily accessible and shareable.
+                     Collections can be created by both Ansible community members and vendors, offering 
+                     a wide variety of specialized functionalities.
+
+Benefits:
+    Expanded Functionality.
+    Modularity and Reusability.
+    Simplified Distribution and Management.
+
+-------------------------------------------------------------------------------------------------------------------
+
+requirements.yml
+---
+collections:
+  - name: community.general
+    version: '1.0.0'
+  - name: amazon.aws
+    version: '1.2.1'
+
+To install collections from requirements file:
+>ansible-galaxy collection install -r requirements.yml
+
+-------------------------------------------------------------------------------------------------------------------
+
+You've been informed about a new Ansible Collection named networking_tools under the namespace company_xyz. 
+This collection contains specialized modules for network automation. 
+You need to write a playbook that installs this collection and then uses a custom module named configure_vlan 
+from it to set up VLAN 10 with the name Admin_VLAN.
+
+---
+- hosts: localhost
+  tasks:
+    - name: Install the networking_tools collection
+      ansible.builtin.ansible_galaxy_collection:
+        name: company_xyz.networking_tools
+        source: https://galaxy.ansible.com
+
+- hosts: switches
+  collections:
+    - company_xyz.networking_tools
+  tasks:
+    - name: Configure VLAN 10
+      configure_vlan:
+        vlan_id: 10
+        vlan_name: Admin_VLAN
+
+-------------------------------------------------------------------------------------------------------------------
+

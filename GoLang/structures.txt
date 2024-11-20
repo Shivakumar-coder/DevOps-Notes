@@ -1,0 +1,66 @@
+stuct - declaration
+Ex:
+type Student struct {
+    name string
+    rollNo int
+    marks []int
+    grades map[string]int
+}
+--------------------------------------------------------
+struct - initialization
+Ex:
+var s Student
+--------------------------------------------------------
+To debug or to view the values of struct
+Ex:
+fmt.Printf("%+v", s)
+--------------------------------------------------------
+To create an instance of the struct
+Syntax: <var_name> := new(<struct_name>)
+Ex:
+st := new(Student)
+--------------------------------------------------------
+Short Hand only for initialization:
+st := Student {
+    name: "Joe",
+    rollNo: 12,
+}
+--------------------------------------------------------
+struct initialization without var_name:
+Ex:
+st := Student{"Joe",12}
+
+============================================================================================================
+Accessing fields of a struct can be done by using "." operator
+<var_name>.<field_name>
+Ex:
+var s Student
+s.name = "Joe"
+s.rollNo = 13
+============================================================================================================
+package main
+
+import "fmt"
+
+type Movie struct {
+	name   string
+	rating float32
+}
+
+func getMovie(s string, r float32) (m Movie) {
+	m = Movie{
+			name:   s,
+			rating: r,
+	}
+	return
+}
+
+func main() {
+	mov := Movie{"xyz", 2.1}
+    mov1 := Movie{"abc", 2.1}
+    if mov.rating == mov1.rating || mov != mov1 {
+            fmt.Println("condition met")
+    } else if mov.rating == mov1.rating {
+            fmt.Println("condition_2 met")
+    }
+}

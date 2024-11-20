@@ -1,0 +1,41 @@
+Syntax:
+while [ <<condition>> ]
+do
+    <commands>
+done
+
+
+while true
+do
+        echo " 1. Add"
+        echo " 2. Subtract"
+        echo " 3. Multiply"
+        echo " 4. Divide"
+        echo " 5. Quit"
+        echo ""
+
+        read -p "       Enter your choice : " option
+        echo ""
+
+        if [ $option -eq 5 ]
+        then
+                break
+        fi
+
+        read -p "  Enter 1st number : " num1
+        read -p "  Enter 2nd number : " num2
+
+        if [ $option -eq 1 ]
+        then
+                echo "  Answer=$(( $num1 + $num2 ))"
+        elif [ $option -eq 2 ]
+        then
+                echo "  Answer=$(( $num1 - $num2 ))"
+        elif [ $option -eq 3 ]
+        then
+                echo "  Answer=$(( $num1 * $num2 ))"
+        elif [ $option -eq 4 ]
+        then
+                echo "  Answer=$(( $num1 / $num2 ))"
+        fi
+done

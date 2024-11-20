@@ -1,0 +1,7 @@
+Literal types:
+1. Integers
+    Octal numbers (Ex: 0o1234)
+    Hexadecimal numbers (Ex: 0x1234)
+2. Floating point numbers
+3. Strings
+4. Booleans

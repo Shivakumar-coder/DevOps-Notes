@@ -1,0 +1,90 @@
+The variable block in terrsform accepts 3 parameters.
+
+1. default: to specify default values
+2. type: this is optional, but when used, it will enforce the type of variable being used.
+         Ex: string, number, bool, any(default), list(it's a numbered collection), map(ey value pairs), 
+3. description: this is optional, but it's good practice to let now why this is written.
+
+
+type examples:
+---List---
+variable "prefix" {
+    default=["Mr","Mrs","Sir"]
+    type=list
+}
+
+...
+resource "random_pet" "my-pet" {
+    prefix=var.prefix[0] ---------> Mr
+}
+
+---Map---
+variable file-content {
+    type=map
+    default={
+        "statement1"="We love pets!"
+        "statement2"="We love animals!"
+    }
+}
+
+...
+resource local_file my-pet {
+    filename="/root/pets.txt"
+    content=var.file-content["statement1"]
+}
+
+
+---Combine type constraints---
+variable "prefix" {
+    default=["Mr","Mrs","Sir"]
+    type=list(string)
+}
+
+variable "prefix" {
+    default=[1,2,3]
+    type=list(number)
+}
+
+variable "cats" {
+    default={
+        "color"="brown"
+        "name"="brlla"
+    }
+    type=map(string)
+}
+
+---Set---(Should only contain unique value)
+variable "prefix" {
+    default=["Mr","Mrs","Sir"]
+    type=set(string)
+}
+
+variable "prefix" {
+    default=[1,2,3]
+    type=set(number)
+}
+
+
+
+-------------------Objects-------------------
+With Objects we can create complex data type structures by combaining basic types
+---
+variable "bella" {
+    type=objects({
+        name=string
+        color=string
+        age=number
+        food=list(string)
+        favorite_pet=bool
+    })
+}
+
+
+---Tuples---
+variable kitty {
+    type=tuple([string,number,bool])
+    default=["cat",7,true]
+}
+
+If you can't explain it simply, you don't understand it well enough.
+– Albert Einstein

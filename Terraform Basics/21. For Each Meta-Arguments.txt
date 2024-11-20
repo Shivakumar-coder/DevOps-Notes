@@ -1,0 +1,41 @@
+For-Each: To overcome the limitations of Count meta-argument, we can opt for for-each argument.
+          the for_each argument will only work with map or set values. Or if we don't want to change 
+          the data type in the variable config file, the use toset argument to convert the data type in 
+          main config file.
+    Example:
+    ---
+    variable "filename" {
+        type=list(string)
+        default = [
+            "/root/pets.txt",
+            "/root/dogs.txt",
+            "/root/cats.txt"
+        ]
+    }
+    ---
+    resource "local_file" "pet" {
+        filename = each.value
+        for_each = toset(var.filename)
+    }
+                       Or
+    ---
+    variable "filename" {
+        type=set(string)
+        default = [
+            "/root/pets.txt",
+            "/root/dogs.txt",
+            "/root/cats.txt"
+        ]
+    }
+    ---
+    resource "local_file" "pet" {
+        filename = each.value
+        for_each = var.filename
+    }
+
+By useing set or map data type, the terraform will identify each resource with their identifiers instead of 
+allocating each resources with an index id, thereby bypassing indexing.
+
+
+"You are exactly where you need to be. You are not behind."
+- Xyz

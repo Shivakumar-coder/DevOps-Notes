@@ -1,0 +1,23 @@
+Printf - format specifier
+
+%v = formats the value in a default format.
+Ex:
+var name string = "KodeKloud"
+fmt.Printf("Nice to see you here, at %v", name)
+
+
+%d = formats decimal integers.
+Ex:
+var grade int = 42
+fmt.Printf("Marks: %d", grade)
+
+
+%v = default format
+%T = type of the value
+%d = integers
+%c = character
+%q = quoted character/string
+%s = plain string
+%t = true or false
+%f = floating Numbers
+%.2f = floating numbr upto 2 decimal places

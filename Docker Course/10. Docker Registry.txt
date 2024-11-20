@@ -1,0 +1,33 @@
+>docker run nginx
+
+Here to better understand the image name nginx
+
+1. This image follows Docker's image naming convention, nginx here is the image or the repository name.
+
+2. Since we didn't mention the path from which account it should be pulled, it defaults to library 
+   account in cloud registry.
+
+3. Since we have not specified the location from were these images are stored and pulled from, it defaults to Docker's 
+   own public available registry called Docker Hub with DNS name as docker.io
+
+So the command will be expanded as
+>docker run docker.io/library/nginx
+
+All big tech have there own registry
+
+If we want to have our own in house registry, then we can pull a image from Docker Hub called registry and set it up to 
+our needs
+>docker run --name my-registry -d -p 5000:5000 registry:2 .
+
+Now how to push an image to our in-house registry
+>docker image tag <image-name> <url-of-the-registry>:<port>/<image_name>
+
+1. First tag the image
+>docker image tag my-image localhost:5000/my-image
+
+2. Now Push the image to in-house registry
+>docker push localhost:5000/my-image
+
+
+To pull only a image from Docker:
+>docker image pull <image_name>

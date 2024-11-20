@@ -1,0 +1,49 @@
+If the default value is not set in variables.tf file then while applying tf the execution turns to interactive mode.
+$terraform apply
+var.content
+    Enter a value: We love Pets!
+
+var.filename
+    Enter a value: /root/pets.txt
+
+....
+
+
+We can also supply variables parameter while applying using -var flag.
+>terraform apply -var "filename=/root/pets.txt" -var "content=We love Pets!" -var "prefix=Mrs" -var "separator=."
+ -var "length=2"
+
+
+Using env variables
+>export TF_VAR_filename="/root/pets.txt"
+>export TF_VAR_content="We love Pets!"
+>export TF_VAR_prefix="prefix=Mrs"
+>export TF_VAR_separator="."
+>export TF_VAR_length="2"
+>terraform apply
+
+
+Using variable definition files like terraform.tfvars or it can have other names but 
+should have file type ".tfvars" or ".tfvars.json" or *.auto.tfvars or *.auto.tfvars.json
+---
+filename="/root/pets.txt"
+content="We love Pets!"
+prefix="prefix=Mrs"
+separator="."
+length="2"
+---
+>terraform apply -var-file variable.tfvars
+
+
+Variable Definition Precedence priority
+1. Environment variables ----------------------> lowest priority
+2. terraform.tfvars
+3. *.auto.tfvars (Alphabetical Order)
+4. -var or -var-file (command-line flags) -----> highest priority
+
+Terraform follows a variable definition precedence order to determine the value and 
+the command line flag of –var or –var-file takes the highest priority.
+
+
+If you can't explain it simply you don't understand it well enough.
+– Albert Einstein

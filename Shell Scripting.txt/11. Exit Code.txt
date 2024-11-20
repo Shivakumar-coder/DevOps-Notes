@@ -1,0 +1,18 @@
+EXIT STATUS = 0 -------------> SUCCESS
+EXIT STATUS > 0 -------------> FAILURE
+
+To check exit code of a cmd:
+$ echo $?
+<number> ----------> Output will be a number
+
+The $? will only provide the output of the previos command only.
+
+Best Practice:
+Always return appropriate exit codes in your script.
+
+---
+if [ $rocket_status = "failed" ]
+then
+    rocket-debug $mission_name
+    exit 1
+fi

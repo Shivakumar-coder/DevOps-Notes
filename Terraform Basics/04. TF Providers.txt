@@ -1,0 +1,20 @@
+After creating a dir or workspace in which the .tf is placed. 1st we need to do is initialize tf in that folder.
+>terraform init
+
+This cmmd will downloads and installs plugins for the providers used within the written config file.
+
+TF providers are distributed by HashiCorp and are publically available registry at registry.terraform.io
+
+There are 3 tiers of providers:
+1. Official: Owned and maintained by HashiCorp.
+2. Partner: Provided by 3rd party who have undergone partner provider process.
+3. Community: Published and maintained by single contributors of the HashiCorp community.
+
+The init will download and install all the required plugins and displays it's version.
+
+* hashicorp/local: version = "~> 2.0.0" ---> This is also known as source address. This is an identifier that is
+used by Terraform to locate and download the plugin from registry.
+Here hashicorp denotes organizational namespace, this is followed by the type which is the name of the provider 
+such as local.
+The namespace is optionally prefixed with hostname were the plugin is located. If not seen, it defaults to 
+registry.terraform.io

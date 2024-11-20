@@ -1,0 +1,22 @@
+We need 2 things to move state file to remote backend.
+
+1. AWS S3 bucket to store terraform state file
+2. DynamoDB table which will be used to implement state locking and consistency checks.
+
+Write a terraform block which consists of aws pre-requists
+---terraform.tf---
+terraform {
+    backend "s3" {
+        bucket = "bucket-to-store-terraform-state-file" // AWS S3 unique bucket name.
+        key = "finance/terraform.tfstate" // Name of the file to be stored in s3 bucket
+        region = "us-west-1" //aws region
+        dynamodb_table = "state-locking" // table name
+    }
+}
+
+"
+If you really look closely, 
+most overnight successes 
+took a long time.
+"
+– Steve Jobs

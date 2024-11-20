@@ -1,0 +1,21 @@
+TF support the use of multiple providers within the same config.
+
+Ex:
+---
+resource "local_file" "pet" {
+    filename="/root/pets.txt"
+    content="We love pets!"
+}
+
+resource "random_pet" "my-pet" {
+    prefix="Mrs"
+    separator="."
+    length="1"
+}
+
+In the above example the keyword before "_" is the provider. The keyword following "_" is the resource 
+type which is pet.
+
+
+Question everything. Learn something. Answer nothing.
+– Euripides

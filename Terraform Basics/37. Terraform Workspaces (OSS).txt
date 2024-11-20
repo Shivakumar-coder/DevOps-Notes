@@ -1,0 +1,23 @@
+>terraform workspace new ProjectA
+
+This will create a new terraform workspace called ProjectA and a default workspace
+
+To switch to that particular workspace
+>terraform workspace select ProjectA
+
+When we use terraform workspace, terraform create a new dir under which each terraform dir 
+will be created to match the workspace and stores a state file for that workspace.
+
+module "payroll_app" {
+  source = "/root/terraform-projects/modules/payroll-app"
+  app_region = lookup(var.region, terraform.workspace)
+  ami = lookup(var.ami, terraform.workspace)
+}
+
+
+"
+You don’t understand 
+anything until you learn it 
+more than one way.
+"
+– Marvin Minsky

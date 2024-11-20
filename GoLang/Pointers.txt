@@ -1,0 +1,74 @@
+A pointer is a variable that holds memory address of another variable.
+They point where the memory is allocated and provide ways to find or even change the value located at the memory location.
+
+Address Operator (&): The address of a variable can be obtained by preceding the name of a variable with & sign,
+    known as addressof operator.
+
+Dereference Operator (*) : When placed before an address, it returns the value at that address.
+----------------------------------------------------------------------------------------------------------------------------
+Declaring a pointer:
+Syntax:
+var <pointer_name> *<data_type>
+Ex:
+var ptr_i *int
+var ptr_s *string
+----------------------------------------------------------------------------------------------------------------------------
+Initializing a pointer:
+-----> 1st way:
+var <pointer_name> *<data_type> = &<variable_name>
+Ex:
+i := 10
+var ptr_i *int = &i
+-----> 2nd way:
+var <pointer_name> = &<variable_name>
+s := "hello"
+var ptr_s = &s
+-----> Short hand:
+<pointer_name> := &<variable_name>
+----------------------------------------------------------------------------------------------------------------------------
+Passing by reference in functions:
+package main
+
+import "fmt"
+
+func modify(numbers ...int) {
+	for i := range numbers {
+			numbers[i] -= 5
+	}
+}
+func main() {
+	arr := []int{10, 20, 30}
+	fmt.Println(arr)
+	modify(arr...)
+	fmt.Println(arr)
+}
+Arrays in Go are value types, which means when you pass an array to a function, a copy of the array is made.
+Therefore, modifications made to the array inside the function are not reflected in the original array
+package main
+
+import "fmt"
+
+func modify(numbers *[3]int) {
+    for i := range *numbers {
+        (*numbers)[i] -= 5
+    }
+}
+
+func main() {
+    arr := [3]int{10, 20, 30}
+    fmt.Println("Original array:", arr)
+    modify(&arr)
+    fmt.Println("Modified array:", arr)
+}
+
+Maps and Slice will already be declared as pointers
+func modify(s map[string]int) {
+        s["A"] = 100
+}
+func main() {
+        ascii_codes := map[string]int{}
+        ascii_codes["A"] = 65
+        fmt.Println(ascii_codes)
+        modify(ascii_codes)
+        fmt.Println(ascii_codes)
+}

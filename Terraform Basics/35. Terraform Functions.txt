@@ -1,0 +1,61 @@
+-------------Numeric Functions-------------
+>terraform console
+>max(-1,2,-10,200,-250)
+200
+>min(-1,2,-10,200,-250)
+-250
+
+---
+variable "num" {
+    type = set(number)
+    default = [250,10,11,5]
+    description = "A set of numbers"
+}
+>max(var.num...)
+250
+
+---
+>ceil(10.1)
+11
+>ceil(10.9)
+11
+>floor(10.1)
+10
+>floor(10.9)
+10
+-------------String Functions-------------
+>split(",","ami-asd,AMI-qwe,ami-oti")
+[ "ami-asd", "AMI-qwe", "ami-oti" ]
+---
+variable "ami" {
+    type = string
+    default = "ami-xyz,AMI-ABC,ami-efg"
+    description = "A string containing ami ids"
+
+}
+>split(",", var.ami)
+[ "ami-asd", "AMI-qwe", "ami-oti" ]
+>lower(var.ami)
+ami-xyz,ami-abc,ami-efg
+>upper(var.ami)
+AMI-XYZ,AMI-ABC,AMI-EFG
+>title(var.ami)
+Ami-Xyz,Ami-Abc,Ami-Efg
+>substr(var.ami, 0, 7)
+ami-xyz
+>join("," [ <list of comma seperated values> ])
+
+-------------Collection Functions-------------
+length(var.ami)
+3
+
+index(var.ami, "AMI-ABC")
+1
+
+element(var.ami,2)
+ami-efg
+
+contains(var.ami, "ABC-ABC")
+true
+
+contains(var.ami, "ABC-XYZ")

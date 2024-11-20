@@ -1,0 +1,23 @@
+Terraform uses both state file along with configuration files to provision infra resources.
+
+Even though if a resource is created manually without using terraform, terraform can read attributes 
+of that manually created resource eve if it does not manages that resources.
+
+Datasources give terraform the abality to read from resources which are provisioned outside it's control.
+
+The data resource block helps us to read the resource of that particular resource type.
+---
+data "local_file" "dog" {
+    filename = "/root/dog.txt"
+}
+
+To us this info is same as how we use attributes from different block.
+
+Data Sources:
+1. Keyword- Data.
+2. Can only read infra.
+3. Also called Data Resources.
+
+Change is the end result of 
+all true learning.
+– Leo Buscaglia

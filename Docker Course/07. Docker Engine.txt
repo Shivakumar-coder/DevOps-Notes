@@ -1,0 +1,30 @@
+Docker Engine has 3 components:
+
+    1. Docker Deamon : This is a background processes that manages docker objects like images, containers, n/w and volumes.
+        /\
+        ||
+        \/
+    2. REST API : The docker rest API server is the API interface that programs can use to talk to the daemon and instructions
+        /\
+        ||
+        \/
+    3. Docker CLI : This is what we use to perform actions like run, stop, build containers.
+
+1 and 2 can be on different host, separetly from 3
+
+To use 1 and 2 from different 3:
+    >docker -H=<remot-docker-engine-url / IP >:<port>
+Example:
+    docker -H=10.123.2.1:3255 run nginx
+
+How does Docker actually work under the hood ?
+
+Docker uses namespace to isolate workspaces, process IDs, n/w, interprocess communications, mounts and Unix timesharing
+systems are created in their own namespace. Thereby providing isolation between containers.
+
+Docker containers can able to utilise all the available CPU and memory, to restrict this Docker uses cgroups or 
+control groups to restrict the amount of hardware resources allocated to each container.
+
+This can be done by providing the --cpus option to the Docker run command.
+>docker run --cpus=.5 ubuntu --------> This will ensure containers will not use more than 50% of the CPU
+>docker run --memory=100m ubuntu ----> For memory

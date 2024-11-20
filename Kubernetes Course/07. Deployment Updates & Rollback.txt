@@ -1,0 +1,36 @@
+Rollout: Whenyou 1st create a deployment, it triggers a rollout.
+         A new rollout creates a new deployment revision.
+
+
+To see status of rollout.
+>kubectl rollout status deployment/<deployment-name>
+kubectl rollout status deployment/fontend
+
+
+To see histtory.
+>kubectl rollout history deployment/<deployment-name>
+
+
+Deployment Strategy:
+1. Recreate: Take down all the instances of old version at once and bring up new versions at once.
+             This will create application downtime untill new versions are ready to accept new workload.
+
+2. Rolling Update: This will take out one instance at a time and update it and moves to next instance only after finishing
+                   the last updateing instance has come live.
+
+By default the K8 will go with rolling update strategy if we do not specify any value for strategy while deploying a new version.
+
+We can make the changes to the deployment file and then run below cmmd.
+>kubectl apply -f <deployment-file-name>
+
+
+The other way to set image by the cmmd itself. By this way the definition file is also update.
+>kubectl set image deployment/<deployment-name> \
+                <container-name>=<image-version>
+
+
+Cmmd to undo the changes.
+>kubectl rollout undo deployment/<deployment-name>
+
+To edit the deployment file
+>kubectl edit deployment <deployment-file-name>

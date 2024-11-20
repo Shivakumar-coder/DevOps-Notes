@@ -1,0 +1,4 @@
+Container Orchestration can be done by 3 tools.
+    Docker Swarm : Provided by Docker; Easy to setup and start; Don't have advaced features and many options.
+    Kubernetes   : Provided by Google Open-Source; Hard to setup and start; Have many options.
+    Mesos        : Provided by Apache; Hard to setup and start; Have advaced features.

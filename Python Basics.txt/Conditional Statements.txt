@@ -1,0 +1,20 @@
+if <condition>:
+    <statement>
+elif <condition>:
+    <statement>
+else:
+    <statement>
+----------------------------------
+While:
+Syntax:
+while <condition>:
+    <statement>
+else:
+    <statement>
+
+When the while loop condition returns false the statement under else is executed.
+------------------------------------------------------------------------------------------------------
+For Loop:
+Syntax:
+for <variable> in <condition>:
+    <statement>

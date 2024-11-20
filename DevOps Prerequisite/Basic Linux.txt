@@ -1,0 +1,24 @@
+RPM (Red Hat Package Manager)
+
+
+Example:
+rpm -i telnet.rpm ----------> this cmd will only install package and nothing else.
+rpm -e telnet.rpm ----------> this cmd will only uninstall package and nothing else.
+rpm -q telnet.rpm ----------> this cmd will install package and other dependency which telnet requires.
+
+
+command to find if a package is installed or not :
+rpm -q <package_name> <package_name> <package_name>
+                           ^-----if u need to check number of packages in one cmd
+
+To install package with yum
+yum install ansible-2.8.11
+
+Setup env variable PATH:
+
+export PATH=$PATH:/opt/jdk-20/bin
+
+==========================================================================================================
+
+to start a service :
+>service <service_name> start

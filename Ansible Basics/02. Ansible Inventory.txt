@@ -1,0 +1,106 @@
+Ansible can work with 1 or more system at the same time. Inorder to to work with multiple 
+systems, ansible needs to estblish connection with those system.
+
+Connectivity between linux system is usually done by SSH, for windows Connectivity can be done by Powershell Remoting.
+
+Ansible offers Agentless connection meaning that it only requires only SSH connection so that master system with Ansible 
+installed only needs ssh connection to connect to target system without needing to install any agents on the target system.
+
+The information will be stored in an inventory file. If the inventory if is not specified, then ansible will pickup default 
+file stored at /etc/ansible/hosts directory.
+
+Inventory file contains below statements.
+
+server1.company.com
+server2.company.com
+
+[mail]--------->to define group name we use square brackets with a group name written in it.
+server3.company.com -------------------> The system written under that group name belongs to that group.
+server4.company.com
+
+[db]------------------>group name
+server5.company.com--->system belongs to that group name
+server6.company.com
+
+[web]
+server7.company.com
+server8.company.com
+
+=======================================Parameters=======================================
+
+"ansible_host" parameter : This parameter will allow users to assign a system or FQDN or IP address to a name.
+
+Ex:
+web ansible_host=server1.company.com
+db ansible_host=server2.company.com
+
+Other parameters are:
+1. ansible_connection : used to specify the type of connection to be done like ssh/winrm/localhost
+                        If we do not wish to connect to any other systems, then we can connect to localhost.
+
+
+2. ansible_port : This will allow us to specify which port of the system should ansible connect with.
+                  Default being port 22 for ssh.
+
+
+3. ansible_user : This will allow to specify which type of user connection to be made. Is it a root or administrator or etc.
+                  Default being root for linux machines.
+
+
+4. ansible_ssh_pass : With this parameter users can specify password used for connection.
+                      For Linux based hosts, use ansible_ssh_pass parameter 
+                      and for Windows based hosts, use ansible_password parameter.
+
+Ex:
+web ansible_host=server1.company.com ansible_connection=ssh ansible_user=root
+
+db ansible_host=server2.company.com ansible_connection=winrm ansible_user=admin
+
+mail ansible_host=server3.company.com ansible_connection=ssh ansible_ssh_pass=ireg3489p
+
+web2 ansible_host=server4.company.com ansible_connection=winrm
+
+localhost ansible_connection=localhost
+=================================================================================================================
+There are two formats to write inventory files:
+1. INI format: Example below
+
+[webservers]
+server1.company.com
+server2.company.com
+
+[dbservers]
+server3.company.com
+server4.company.com
+
+2. YAML format: Example below
+
+all:
+    children:
+        webservers:
+            hosts:
+                web1.example.com:
+                web2.example.com:
+        dbservers:
+            hosts:
+                db1.example.com:
+                db2.example.com:
+=================================================================================================================
+
+Grouping and Parent-Child Relationships:
+all:
+    children:
+        webservers:
+            children:
+                webservers_us:
+                    hosts:
+                        server1_us.com:
+                            ansible_host: <IPv4 address>
+                        server2_us.com:
+                            ansible_host: <IPv4 address>
+                webservers_eu:
+                    hosts:
+                        server1_eu.com:
+                            ansible_host: <IPv4 address>
+                        server2_eu.com:
+                            ansible_host: <IPv4 address>

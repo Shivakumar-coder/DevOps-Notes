@@ -1,0 +1,37 @@
+Create s2 bucket resource
+---
+resource "aws_s3_bucket" "finance" {
+    bucket = "finance-20202020"
+    tags = {
+        Description = "Finance and Payroll"
+    }
+}
+
+
+To upload an object to the bucket
+---
+resource "aws_s3_bucket" "finance" {
+    bucket = "finance-20202020"
+    tags = {
+        Description = "Finance and Payroll"
+    }
+}
+
+resource "aws_s3_bucket_object" "finance-20383" {
+    content = "/root/finance/finance-2020.doc"  // the path were the object is stored or source
+    key = "finance-2020.doc"
+    bucket = aws_s3_bucket.finance.id
+}
+
+Who can access this bucket, attach an IAM policy to this bucket.
+data "aws_iam_group" "finance-data" {
+    group_name = "finance-analysts"
+}
+
+"
+Those who hoard gold have 
+riches for a moment.
+Those who hoard knowledge 
+and skills have riches for a lifetime.
+"
+– The Diary of a CEO

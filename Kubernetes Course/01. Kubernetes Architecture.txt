@@ -1,0 +1,39 @@
+A Cluster is a group of Nodes.
+
+A Node containes n number of Pods.
+A Node is virtual or physical machine on which Kubernetes tools are installed.
+
+A Pod containes n number of Container.
+
+A Master Node is were control plane is installed to controle slave Nodes.
+==============================================================================================================================
+When you install Kubernetes on a system. You are install the following components.
+1. API server:
+    The API will act as a frontend service for Kubernetes like supporting CLI, etc.
+
+2. etcd service:
+    This is a key-value store. The etcd is a distributed reliable key-value store used by Kubernetes to store all the 
+    data used to manage the cluster. etcd will store all the info of all the nodes and master on all the nodes in the cluster 
+    in a distributed manner. It is also responsible to implement logs with in the cluster
+
+3. kubelet service:
+    This is an agent that runs on each node in the cluster. The agent is responsible for making sure that the containers are 
+    running on the nodes as expected.
+
+4. Container Runtime:
+    This is the underlying software (like Docker, rkt, CRI-O) that is used to run containers.
+
+5. Controler:
+    This is  the brain behind orchestration. They're responsible for noticing and responding when nodes, containers or 
+    endpoints close down. The controllers make decisions to bring up new containers in such cases.
+
+6. Scheduler:
+    This is responsible for distributing work among all the nodes evenly and looks for any new containes and bringing them 
+    into work force.
+==============================================================================================================================
+kubectl is the CLI for Kubernetes.
+
+
+kube-apiserver, etcd, controller, scheduler are the components which will be installed on master node.
+
+kubelet, container runtime are the components which will be installed on worker node.

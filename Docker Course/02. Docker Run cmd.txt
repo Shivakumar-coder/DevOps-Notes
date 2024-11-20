@@ -1,0 +1,41 @@
+Run - STDIN: Docker by default runs container in a non-interactive mode.
+
+To run in interactive mode use below syntax:
+    >docker run -i <container> // here 'i' is for interactive mode
+
+To run in interactive mode within a terminal:
+    >docker run -it <container_name>
+        this will attach a terminal to the running container and it will be interactive.
+
+====================================================================
+
+Run - PORT mapping: Docker container has it's own IP address and port. Docker host (on which the container is running) has it's
+    own IP and ports.
+
+To map container port with host port:
+    >docker run -p <host_port>:<container_port> <container_name>
+
+====================================================================
+
+Run - Volume mapping: Docker containers have their own file system. If we stop or remove the container, it's affect will be seen
+    on it's data too. It's best to map container directery to other directery which is outside of the container. By this way 
+    even if we delete the container, it's data will not be deleted.
+    >docker run -v <other_dir>:<container_dir> <container_name>
+Ex: >docker run -v /opt/datadir:/var/lib/mysql mysql
+
+====================================================================
+
+Inspect container: see all the meta data of the container.
+    >docker inspect <container_name>
+
+====================================================================
+
+Container Logs: 
+    >docker logs <container_name>
+
+====================================================================
+
+Tag - 
+    >docker run redis:4.0
+        ^^here "4.0" is a tag, the docker will pull the redis image with has tag 4.0 and runs that redis image.
+        by default it will be latest.

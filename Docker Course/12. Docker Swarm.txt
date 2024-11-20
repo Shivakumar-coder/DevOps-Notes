@@ -1,0 +1,5 @@
+Example command:
+    >docker service create --replicas=3 --network frontend my-web-server
+    >docker service create --replicas=3 -p 8080:80 my-web-server
+
+The service cmmd should run on manager host

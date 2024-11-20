@@ -1,0 +1,63 @@
+Dictionary:
+{
+    "car": "blue",
+    "price": "$20,000"
+}
+
+Array:
+{
+    "car": "blue",
+    "price": "$20,000",
+    "wheels": [
+        {
+            "model": "X001",
+            "location": "front-right"
+        },
+        {
+            "model": "X002",
+            "location": "front-left"
+        }
+    ]
+}
+
+==========================================================
+JSON Path: Is a query language that let's user to parse data like SQL.
+
+The element at the top is the root element, if it's empty then the root element is '$'
+Example Data:
+{
+    "vehicles": {
+        "car": {
+            "color": "blue",
+            "price": "Rs. 20,000"
+        },
+        "bus": {
+            "color": "white",
+            "price": "Rs. 1,20,000"
+        }
+    }
+}
+
+Query for Dictionary:
+>$.vehicles.car
+Output:
+[
+    {
+        "color": "blue",
+        "price": "Rs. 20,000"
+    }
+]
+
+>$.vehicles.bus.price
+[
+    "Rs. 1,20,000"
+]
+
+--------------------------------------
+JSON Lists:
+[
+    "car", ------> [0]
+    "bus", ------> [1]
+    "truck", ----> [2]
+    "bike" ------> [3]
+]

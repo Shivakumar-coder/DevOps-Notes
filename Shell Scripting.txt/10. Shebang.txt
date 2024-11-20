@@ -1,0 +1,11 @@
+If u r in old shell and want to run the bash script it won't give expected output.
+add a line in the very begining of the every script u write.
+#!/bin/bash
+This will tell that it's a bash script
+Similarly
+If u want the shell to know it's a shell script
+#!/bin/sh
+
+Bourne Shell - sh
+Debian Almquist shell - dash
+Bourne again Shell - bash

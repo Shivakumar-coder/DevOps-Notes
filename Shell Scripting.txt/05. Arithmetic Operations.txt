@@ -1,0 +1,21 @@
+There are 2 ways to write expressions:
+
+1st type using expr command:
+Ex:
+$ expr 6 + 4 ----------------> there should always be a space between operands and operators
+10
+
+$ expr 6 - 4
+2
+
+$ expr 6 / 3
+2
+
+$ expr 6 \* 3 ---------------> backslash is used to escape special meaning provided for *
+18
+
+Ex:
+sum=$(( $1 + $2 + $3 ))
+avg=$(echo "$sum / 3" | bc -l) --------> bc -l will perform the calculation like a basic calculator and gives 
+                                         floating value result.
+echo $avg

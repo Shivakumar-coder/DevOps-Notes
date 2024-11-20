@@ -1,0 +1,10 @@
+Ansible Handlers: With handlers you can define an action to restart the web server service and associate it 
+                  with the task that modifies the configuration file. This creates a dependency between the 
+                  task and the handler. Now when ever the configuration file is modified during the playbook run,
+                  the associated handler is triggered ensuring that the web server service is automatically restarted.
+                  By utilizing handlers, you eliminate the need for manual intervention and ensure that the web server
+                  service is always restarted when necessary.
+
+                  Handlers are specific tasks associated with specific events or notifications.
+                  They're typically defined in a playbook and are executed only when triggered by a task notifying them.
+                  Handlers enable you to manage actions that depend on the state or config changes of your systems.

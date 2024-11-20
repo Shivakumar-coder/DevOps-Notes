@@ -1,0 +1,28 @@
+Variable:
+
+Syntax:
+$<Variable_name>
+
+Ex:
+mission_name=mars-mission
+mkdir $mission_name
+
+Naming rules:
+1. Case sensiive
+2. Can be alphanumeric or have underscore (_)
+3. Should not contain "-"
+
+Assign Variable to another variable:
+Ex:
+rocket_status=$(rocket-status $mission_name)
+echo "Status of the launch: $rocket_status"
+
+Assign variable with output of a command.
+Ex:
+<Variable_name>=$(command)
+
+This script creates a backup of a file by creating a copy of the same file and apending _bkp to it's name.
+Ex:
+file_name="create-and-launch-rocket"
+
+cp $file_name ${file_name}_bkp

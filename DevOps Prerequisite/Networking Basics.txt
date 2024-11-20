@@ -1,0 +1,39 @@
+Switch: This creates a n/w space and enables us to link 2 machines in a single n/w.
+
+To see the n/w interfaces of the machine :
+> ip link
+>> eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> ..........
+
+To assign a n/w to the machine:
+> ip addr add 192.168.1.10/24 dev eth0
+=======================================================================================
+Router: This enables us to connect to Switchs.
+
+To see routing config:
+>route
+
+To send traffice from one n/w A to another n/w B, we will add a routeing rule:
+> ip route add 192.168.2.0/24 via 192.168.1.1
+
+To send traffice from one n/w B to another n/w A, we will add a routeing rule:
+> ip route add 192.168.1.0/24 via 192.168.2.1
+
+=======================================================================================
+Gateway: 
+
+=======================================================================================
+DNS: Dedicating a server for name resolution is called Domain Name Resolution
+
+Name Resolution:-
+Assign a name to IP:
+>cat >> /etc/hosts
+192.168.1.11    db
+
+>ping db
+
+Files to remember:
+/etc/hosts
+/etc/resolv.conf
+file for nsswitch
+
+=======================================================================================

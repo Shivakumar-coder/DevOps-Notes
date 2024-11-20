@@ -1,0 +1,39 @@
+Loops: Loop is a looping directive that executes the same task multiple number of times.
+       Each time it runs, it stores the value of each item in the loop in a variable named called item
+
+Example:
+---
+-
+ name: Create users
+ hosts: localhost
+ tasks:
+  - user: name='{{ item }}' state=present
+    loop:
+      - joe
+      - george
+      - ravi
+      - mani
+      - kiran
+      - jazlan
+      - emaan
+
+=============================================================================================================
+
+We are attempting to install multiple packages using the yum module for a more realistic use case. 
+The playbook /home/bob/playbooks/packages.yml installs only a single package. 
+Update it to install all packages defined under packages variable.
+
+---
+- name: 'Install required packages'
+  hosts: localhost
+  become: yes
+  vars:
+    packages:
+      - httpd
+      - make
+      - vim
+  tasks:
+    - yum:
+        name: '{{ item }}'
+        state: present
+      with_items: '{{ packages }}'

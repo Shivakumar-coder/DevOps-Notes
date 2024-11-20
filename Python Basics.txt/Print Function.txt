@@ -1,0 +1,19 @@
+Ex:
+print("Hello World!")
+>Hello World!
+
+Ex:
+print("Hello", "World!", sep="")
+>HelloWorld!
+
+Ex:
+print("Hello", "World!", sep=" ", end="😊")
+>Hello World!😊
+
+Ex:
+print("Hello" + " " "future" + " " "python!")
+>Hello future python!
+
+Ex:
+print('Hello "World"!')
+>Hello "World"!

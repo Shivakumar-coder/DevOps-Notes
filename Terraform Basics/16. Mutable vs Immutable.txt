@@ -1,0 +1,24 @@
+When a resource is modified and terraform applies the changes, terraform 1st deletes that resource which is modified 
+in the config file and re-creates that resource to match current saved changes.
+
+Example:
+There are 3 web servers with nginx version 1.17.
+Now we are upgrading them to 1.19.
+2/3 of the servers are updated to 1.18 and then to 1.19, but the last one failed at 1.18.
+Now we have 2 servers with v1.19 and 1 with v1.18.
+
+This situation is called configuration drift, making it difficult to plan and carry out 
+subsequent updates. Troubleshooting issues would also be a difficult task as each server would behave slightly 
+differently from the other due to this configuration drift.
+
+To prevent this situation, we can spin up new servers with v1.18 and delete the old version server once the 
+new version server has completely gone through the update and up and running.
+This is known as immutable infra. As a result we cannot carry out in-place updates of the resources anymore.
+Even if there is any update failure in such case, the old web servers will be left intact to serve traffic and 
+the failed server will be removed.
+As a result, we do not leave much room for configuration drift to occur b/w servers, ensuring that it is left in 
+a simple easy-to-understand state.
+Since we are working with IaC, immutability makes it easier to version the infra and to roll back and roll forward 
+b/w versions.
+
+Terraform as a infra provisioning tool, uses this approach.

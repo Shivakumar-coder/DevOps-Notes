@@ -1,0 +1,44 @@
+Templating: A templating engine is responsible for taking a template and applying a given set of variables to it 
+            to create usable outputs.
+            Jinja is a fully featured templating engine for python. It's a beautiful and powerful and has a wide 
+            range of features.
+-------------------------------------------------------------------------------------------------------------------
+String manipulation:
+The name is {{ my_name }} => The name is Bond
+The name is {{ my_name | upper }} => The name is BOND
+The name is {{ my_name | lower }} => The name is bond
+The name is {{ my_name | replace ("Bond","Bourne") }} => The name is Bourne
+
+In the above example the values after '|' is called filters.
+
+The name is {{ first_name | default("James") }} {{ my_name }} => The name is James Bond
+-------------------------------------------------------------------------------------------------------------------
+
+Filters - List and set
+
+{{ [1,2,3] | min }} => 1
+{{ [1,2,3] | max }} => 3
+{{ [1,2,3,2] | unique }} => 1,2,3
+{{ [1,2,3,4] | union([4,5])}} => 1,2,3,4,5
+{{ [1,2,3,4] | intersect([4,5])}} => 4
+{{ 100 | random }} => Random number
+{{ ["The","name","is","Bond"] | join(" ") }} => The name is Bond
+-------------------------------------------------------------------------------------------------------------------
+
+Loops:
+{% for number in [0,1,2,3,4] %}
+{{ number }}
+{% endfor %}
+=>0
+=>1
+=>2
+=>3
+=>4
+-------------------------------------------------------------------------------------------------------------------
+
+Conditions:
+{% for number in [0,1,2,3,4]%}
+    {% if number == 2 %}
+        {{ number }}
+    {% endif %}
+{% endfor %}

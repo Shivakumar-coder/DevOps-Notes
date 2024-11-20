@@ -1,0 +1,66 @@
+Key Value Pair
+Example-
+Fruits: Apple
+Liquid: Water
+Meat: Chicken
+
+==========================
+
+Array/Lists
+Example-
+Fruits:
+- Orange
+- Apple
+- Banana
+
+Vegetables:
+- Carrot
+- Cauliflower
+- Tomato
+
+===========================
+
+Dictionary/Map: Unordered collection
+Example-
+Banana:
+    Calories: 105
+    Fat: 0.4 g
+    Carbs: 27 g
+
+Grapes:
+    Calories: 62
+    Carbs: 16 g
+    Fat: 0.3 g
+
+===============================
+
+Key Value/Dictionary/Lists: Ordered collection
+Example-
+Fruits:
+    -   Banana:
+            Calories: 105
+            Fat: 0.4 g
+            Carbs: 27 g
+
+    -   Grapes:
+            Calories: 62
+            Fat: 0.3 g
+            Carbs: 16 g
+
+
+
+employee:
+  name: john
+  gender: male
+  age: 24
+  address:
+    city: 'edison'
+    state: 'new jersey'
+    country: 'united states'
+  payslips:
+    - month: june
+      amount: 1400
+    - month: july
+      amount: 2400
+    - month: august
+      amount: 3400

@@ -1,0 +1,24 @@
+Terraform workflow
+
+1. We run terraform init cmmd to download necessary plugins.
+
+2. We create the execution plan by terraform plan cmmd
+    The 1st line in the output will show us that terraform tries to refresh the 
+    state in-memory prior to the plan. If it's 1st time, then there is no details 
+    related to state printed, which implies there is no state recorded at this moment in time.
+    By this terraform understands that there is no resources provisioned based on config file and 
+    then creates execution plan of create.
+
+3. We run terraform apply cmmd.
+    This cmmd will also tries to refresh the in-memory state, finds that there is no state recorded 
+    at the moment, and then proceeds to create an execution plan. Terraform creates the local file resources 
+    as expected. Terraform creates a unique ID for the resource as seen in the cmmd output.
+
+
+After running the terraform apply, we can see an additional file called terraform.tfstate in the same dir, 
+this file is called terraform state file, which was created as a result of the terraform apply cmmd.
+The state file is the json data structure that maps the real-world infra resource to the resources in the 
+config files.
+If we edit the config file and run apply again, the terraform by default refreshes the state again and compares it 
+again to the config file. It now knows that the config file is edited and has a different value in the config file 
+as compared to the terraform state and the real world.

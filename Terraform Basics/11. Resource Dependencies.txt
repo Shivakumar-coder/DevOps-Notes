@@ -1,0 +1,42 @@
+Example:
+---
+resource "local_file" "pet" {
+    filename=var.filename
+    content="My favorite pet is ${random_pet.my-pet.id}"
+}
+
+resource "random_pet" "my-pet" {
+    prefix=var.prefix
+    separator=var.separator
+    length=var.length
+}
+
+Here local_file resource is dependent on random_pet resource output.
+So 1st random_pet resource is created and then local_file resource.
+While deleting resource, it's in reverse order. 1st local_file and then random_pet resource.
+This type of dependency is called implicit dependency.
+Here, we're not explicitly specifying which resource is dependent on which other resource.
+
+We can mention our own dependency by using depends_on argument, this type of dependency is called
+explicit dependency.
+---
+resource "local_file" "pet" {
+    filename=var.filename
+    content="My favorite pet is Mr.Cat"
+    depends_on=[
+        random_pet.my-pet
+    ]
+}
+
+resource "random_pet" "my-pet" {
+    prefix=var.prefix
+    separator=var.separator
+    length=var.length
+}
+
+Resource A relies on another Resource B but doesn't access any of its attributes in its own arguments. 
+What is this type of dependency called?
+explicit dependency
+
+How do we make use of implicit dependency?
+reference expression

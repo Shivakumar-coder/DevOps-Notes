@@ -1,0 +1,18 @@
+Common Jenkins Security Mistakes
+1. Anyone can do anything
+2. Logged-in users can do anything
+3. Anonymous and Authenticated users can access jenkins
+4. Built-in nodes
+
+Manage Jenkins > Security >
+
+"
+I am experienced enough to 
+do this. I am knowledgeable 
+enough to do this. I am 
+prepared enough to do this. I 
+am mature enough to do 
+this. I am brave enough to do 
+this.
+"
+– Alexandria Ocasio-Cortez

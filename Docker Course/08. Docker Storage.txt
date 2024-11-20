@@ -1,0 +1,52 @@
+Docker uses storage drivers to enable layered architecture.
+Some of the common storage drivers are
+AUFS
+BTRFS
+ZFS
+Device Mapper
+Overlay
+Overlay2
+
+Docker will choose a best storage drivers automatically based on the OS.
+
+Docker file system
+
+/var/lib/docker
+|-aufs
+|-containers =====> All files related to containers are stored under the containers folder
+|-image ==========> All files related to images are stored under the image folder
+|-volumes ========> Any volumes created by the Docker containers are created under the voulmes folder.
+
+Each instruction in the Dockerfile creates a layer over the base image used.
+Each of that layers will be cached and can be used to build other similar image.
+Once the build is completed, you cannot modify the contents of these layers and so they will become read-only 
+and you can only modify them by initiating a new build. 
+
+When you want to utilise this read-only build to create new image, Docker will now creates a new layer which is writable.
+
+The containers will have file store created when that container is created and deleted when that container is deleted.
+
+If we are editing any files from read layer, Docker 1st copies that file into read-write layer and modifies the file.
+All future modifications will be done on the copy of this file in the read-write layer. This mechanism is called 
+copy on write.
+The contents of the read-write layer will be in that layer unless you rebuild the image using docker build command.
+
+What if we want to make the changes persistent ?
+We can create a volume with the below command
+>docker volume create data_volume
+
+/var/lib/docker
+|-volumes
+|--data_volume
+
+
+Old way of creating a voulme and using that as file storage:
+    Example:
+        >docker run -v data_volume:/var/lib/mysql mysql
+
+>docker run /data/mysql:/var/lib/mysql mysql
+
+New way:
+    Example:
+        >docker run \
+         --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql

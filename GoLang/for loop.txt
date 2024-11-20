@@ -1,0 +1,5 @@
+syntax:
+
+for initialization; condition; post {
+    // statement
+}

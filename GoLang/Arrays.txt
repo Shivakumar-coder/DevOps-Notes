@@ -1,0 +1,27 @@
+syntax:
+var <arrayName> [<size of the array>] <data_type>
+---------------------------------------------------------------------
+Initialization:
+Ex:
+var grades [3]int = [3]int{10, 20, 30}
+Short Hand:
+grades := [3]int{10,20,30}
+---------------------------------------------------------------------
+array with no size mentioned:
+grades := [...]int{10,20,30}
+fmt.Println(grades)
+
+fmt.Println(len(grades))
+
+index:
+fmt.Println(grades[2]) -------------> 30
+---------------------------------------------------------------------
+Looping through an array using range operator:
+Ex:
+for index, element := range grades {
+    fmt.Println(index, "=>", element)
+}
+---------------------------------------------------------------------
+Multidimensional array:
+Ex:
+arr := [3][2]int{{1,2},{3,4},{5,6}}

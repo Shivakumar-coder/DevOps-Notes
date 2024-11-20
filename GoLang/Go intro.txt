@@ -1,0 +1,6 @@
+package: Go's way of organizing and reusing codes
+Ex: package main
+
+import: key word used for importing packages
+Ex: import "fmt"
+fmt stands for format

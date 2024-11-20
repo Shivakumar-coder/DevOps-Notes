@@ -1,0 +1,19 @@
+Ex:
+$ create-and-launch-rocket
+>Enter the mission name: mars-mission
+
+
+
+create-and-launch-rocket.sh
+---
+read -p "Enter the mission name: " mission_name
+
+mkdir $mission_name
+.
+.
+.
+
+This type of getting input from user can be useful when there should be manual intervention from time to time.
+Like for server reboot script, etc.
+
+usermod -s  $user_name $new_shell

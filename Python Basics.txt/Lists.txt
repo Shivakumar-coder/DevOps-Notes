@@ -1,0 +1,121 @@
+Lists are mutabe structure.
+
+countries = ["USA","Canada","India"]
+print(countries[1])
+del countries[1] -----> to delete an item
+--------------------------------------------------------------------------------
+List can have -ve index
+last element's index is -1
+last 2nd element's index is -3
+.
+.
+.
+1st element's -ve index is -n (n is the number of elements in a list)
+--------------------------------------------------------------------------------
+Reversing a list using slicing operation:
+my_list = [1, 2, 3, 4, 5]
+reversed_list = my_list[::-1]
+print(reversed_list)
+--------------------------------------------------------------------------------
+Methods of list:
+
+1. append: this add an element to the end of the list
+Ex:
+countries.append("Spain")
+
+2. insert(<index>, <element>): this will add element at the specified index
+Ex:
+countries.insert(2, "Italy")
+>>["USA","Canada","Italy","India","Spain"]
+
+3. Swaping 2 element:
+Ex:
+countries[0], countries[1] = countries[1], countries[0]
+
+4. sort: this will  sort the list
+Ex:
+ages = [3,7,5,2,6,8]
+ages.sort()
+>>[2,3,5,6,7,8]
+
+5. reverse:
+
+6. pop: this will delete the element at the given index
+Ex:
+countries.pop(1)
+>>>>["USA","Italy","India","Spain"]
+--------------------------------------------------------------------------------
+Iterating on Lists:
+Ex:
+ages = [56,72,24,46]
+total = 0
+for age in ages:
+    total += age
+avg = total / len(ages)
+print(avg)
+--------------------------------------------------------------------------------
+Ex:
+letters = ["A", "B", "C", "D", "E"]
+print(letters[1:-1]) --------> From index 1 to last but 1 index
+--------------------------------------------------------------------------------
+Find elements in a list:
+<element> in <list_name>
+To check if element is not in the list:
+<element> not in <list_name>
+--------------------------------------------------------------------------------
+2D List
+countries = [
+    ['Egypt', 'USA', 'India'],
+    ['Dubai', 'America', 'Spain'],
+    ['London', 'England', 'France']
+]
+--------------------------------------------------------------------------------
+Copy of 2D List:
+Ex:
+matrix = [[0, 1, 2], [0, 1, 2], [0, 1, 2]]
+
+matrix2 = []
+
+for submatrix in matrix:
+    temp = []  # Create a temporary list for each submatrix
+    for val in submatrix:
+        temp.append(val)  # Append the value to the temporary list
+    matrix2.append(temp)  # Append the temporary list to matrix2
+
+print(matrix2)
+--------------------------------------------------------------------------------
+List comprehension:
+Ex:
+countries = [['Egypt', 'USA', 'India'],
+       ['Dubai', 'America', 'Spain'], 
+       ['London', 'England', 'France']]
+countries2  = [country for sublist in countries for country in sublist if len(country) < 6]
+print(countries2)
+--------------------------------------------------------------------------------
+3D List:
+Ex:
+matrix = [
+    [
+        [0, 1, 2],
+        [0, 1, 2],
+        [0, 1, 2]
+    ],
+    [
+        [0, 1, 2],
+        [0, 1, 2],
+        [0, 1, 2]
+    ],
+    [
+        [0, 1, 2],
+        [0, 1, 2],
+        [0, 1, 2]
+    ]
+]
+
+matrix2 = []
+
+for submatrix in matrix:
+  for val in submatrix:
+    matrix2.append(val)
+
+print(matrix2)

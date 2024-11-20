@@ -1,0 +1,25 @@
+When things go wrong in terraform, the 1st thing to look is for logs to find the cause.
+Terraform will in general display consol logs and error which is causing issues.
+In case we need to look deeper, we need to make use of environment variable called TF_LOG and set to one of the log levels.
+1. INFO
+2. WARNING
+3. ERROR
+4. DEBUG
+5. TRACE - TRACE being the most verbose logging of then all.
+
+>export TF_LOG=ERROR
+
+When we run terraform cmmds after setting the env variables we should see a lot of additional logs based on 
+the level that has been set.
+
+To store logs in a file, use env variable called TF_LOG_PATH
+>export TF_LOG_PATH=/tmp/terraform.log
+
+To disable logging, unset env variable
+>unset TF_LOG_PATH
+
+
+"
+IT'S THE will, NOT THE skill..
+"
+– Jim Bunney

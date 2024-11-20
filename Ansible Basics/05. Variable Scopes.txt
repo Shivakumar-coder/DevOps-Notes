@@ -1,0 +1,24 @@
+There are 2 types of scope:
+
+1. Host Scope:
+2. Play Scope:
+3. Global Scope:
+
+Magic Variables: 
+1. 'hostvars' will help us pick up variables set at different hosts to other hosts.
+2. 'group_names' will return all the group names under which the host is a part of.
+3. 'inventory_hostname' will return the name configured to the host in the inventory file.
+
+Example-
+
+web1 ansible_host=172.20.1.100
+web2 ansible_host=172.20.1.101 dns_server=10.5.5.4
+web3 ansible_host=172.20.1.102
+
+Playbook-
+---
+- name: Print dns server
+  hosts: all
+  tasks:
+  - debug:
+      msg: '{{ hostvars['web2'].dns_server }}'

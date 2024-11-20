@@ -1,0 +1,21 @@
+How to bring existing infra to Terraform config using Terraform import command ?
+
+By making use of terraform import command we can bring the existing resources under terraform management.
+Syntax:
+>terraform import <resource_type>.<resource_name> <attribute>
+Ex:
+>terraform import aws_instance.webserver-2 i-uoi4tb2yb2yp
+
+When we execute this command we will see error msg.
+This is because Terraform import does not update the config file at all.
+It will only update the state file with the details of the infra being imported.
+
+To overcome this error, create an empty resource lock with the same resource type and run the import cmmd again.
+Now the cmmd will run without any errors.
+After this we need to manualy fill in that resource block with the details we need.
+
+"
+Hard work beats talent when 
+talent doesn’t work hard.
+"
+– Tim Notke

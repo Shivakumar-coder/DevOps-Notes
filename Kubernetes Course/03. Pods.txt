@@ -1,0 +1,46 @@
+Kubernetes does not deploy containers directly on worker nodes.
+The containers are encapsulated into a K8s object known as Pods.
+Each pod is a single instance of an application.
+A pod is the smallest object that you can create in K8s.
+At any given time a pod only consists of only one container of one kind.
+
+Multi-Container PODs : A pod can have more than one container running if it's different instance
+from that of any other container running in the pod like a container which processes the doc uploaded 
+by the user in the same pod's other container.
+
+create and run a container in K8s:
+>kubectl run nginx --image nginx
+    This will create and run a container inside a pod on a node.
+
+
+>kubectl get pods
+    This will list all the running pods
+
+
+>kubectl describe pod <pod-name>
+    This provides a lot more info on the pod.
+
+
+>kubectl get pods -o wide
+    This will extend the get pods cmmd to include pod info, IP, etc as a list.
+
+>kubectl delete pod <pod_name>
+    This will delete the pod
+------------------------------------------------------------------------------------------------------------------
+A  note about creating pods using kubectl run.
+
+To create a pod from the command line, use the command:
+
+Create an NGINX Pod
+
+kubectl run nginx --image=nginx
+
+As of version 1.18, kubectl run (without any arguments such as --generator ) will create a pod instead of a deployment.
+
+To create a deployment using imperative command, use kubectl create:
+
+kubectl create deployment nginx --image=nginx
+
+Kubernetes Concepts – https://kubernetes.io/docs/concepts/
+
+Pod Overview- https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/

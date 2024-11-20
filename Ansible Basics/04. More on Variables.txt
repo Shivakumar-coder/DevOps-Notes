@@ -1,0 +1,31 @@
+Registering Variables and Variable Precedence
+
+
+The variable defined at host level will be the 1st priority than the same variabel defined at group level.
+Priority Order:
+
+1. Extra Variable: This refers to the variabel set at command line. This has the highest priority.
+
+2. Play Variable: This refers to the variabel set in a playbook. This has the 2nd most priority.
+
+3. Host Variable: This refers to the variable set at the time of deleraing a host. This has 3rd priority.
+
+4. Group Variable: This refers to the variabel set at group declaration level. This has last priority.
+
+
+These are the 4 important levels at which variables are set. There are totle of 22 types of variable.
+
+=============================================================================================================
+
+Register Variable: This type of variable will help us store the output of other command and used to send as an 
+                    input to other variables.
+Example:
+---
+- name: Check /etc/hosts file
+  hosts: all
+  tasks:
+  - shell: cat /etc/hosts
+    register: result
+
+  - debug:
+      var: result

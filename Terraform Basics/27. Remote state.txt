@@ -1,0 +1,11 @@
+Using git to store and retrive state files is not a recommended practice as it contains sensitive info.
+
+When a operation or execution is being performed with terraform, then terraform will not allow or will not 
+execute any other execution ||ly. This will ensure that the terraform state file is not corrupted. This is called
+state locking were in no 2 operations will be executed ||ly.
+
+This feature of state locking is not supported by version control systems like git. So, it's not a good practice to 
+use any such version control system to host your IaC code base.
+
+To mitigate this kind of issues, it's a much better option to store terraform in a shared storage by making use of 
+Remote Backend. With this option, the state file no longer resides in the configuration directory.

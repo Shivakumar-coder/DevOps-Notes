@@ -1,0 +1,83 @@
+Provision IAM resource with terraform.
+Example:
+---
+provider "aws" { //No recommended
+    region = "us-west-2"
+    access_key = "oinbwpbn"
+    secret_key = "lnvweergwiog"
+}
+            or
+provider "aws" { // here creds are preloaded in the hidden dir and installed aws cli
+    region = "us-west-2"
+}
+            or
+//set env vars for the id and key
+>export AWS_ACCESS_KEY_ID=oinbwpbn
+>export AWS_SECRET_ACCESS_KEY_ID=lnvweergwiog
+>export AWS_REGION=us-west-2
+
+resource "aws_iam_user" "admin-user" {
+    name = "lucy"
+    tags = {
+        Description = "Technical Team Leader"
+    }
+}
+
+Provision IAM policy and attach it to a user:
+Example:
+resource "aws_iam_user" "admin-user" {
+    name = "lucy"
+    tags = {
+        Description = "Technical Team Leader"
+    }
+}
+
+resource "aws_iam_policy" "adminUser" {
+    name = "AdminUsers"
+    policy = <<EOF
+    {
+        "Version": "2012-10-17"
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": "*"
+                "Resource": "*"
+            }
+        ]
+    }
+    EOF
+}
+
+resource "aws_iam_user_policy_attachment" "lucy-admin-access" {
+    user = aws_iam_user.admin-user.name
+    policy_arn = aws_iam_policy.adminUser.arn
+}
+
+Here AdminUsers policy is a AdministratorAccess Policy got from AWS and added to aws_iam_policy type resources 
+as json file. To pass the json file as an argument, we have passed the file as a document in above example.
+
+The oter way is to store the policy in a json file and pass it as a file argument
+---admin-policy.json---
+{
+    "Version": "2012-10-17"
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "*"
+            "Resource": "*"
+        }
+    ]
+}
+-------------
+resource "aws_iam_policy" "adminUser" {
+    name = "AdminUsers"
+    policy = file("admin-policy.json")
+}
+
+"
+Regret for the time wasted 
+can become a power of 
+good in the time that 
+remains.
+"
+– Arthur Brisbane
