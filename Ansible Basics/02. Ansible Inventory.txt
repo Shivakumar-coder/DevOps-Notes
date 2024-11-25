@@ -1,4 +1,4 @@
-Ansible can work with 1 or more system at the same time. Inorder to to work with multiple 
+Ansible can work with 1 or more system at the same time. Inorder to work with multiple 
 systems, ansible needs to estblish connection with those system.
 
 Connectivity between linux system is usually done by SSH, for windows Connectivity can be done by Powershell Remoting.
@@ -63,7 +63,7 @@ web2 ansible_host=server4.company.com ansible_connection=winrm
 localhost ansible_connection=localhost
 =================================================================================================================
 There are two formats to write inventory files:
-1. INI format: Example below
+1. INI format: Useed when the organisation is small or not complex. Example below
 
 [webservers]
 server1.company.com
@@ -73,7 +73,7 @@ server2.company.com
 server3.company.com
 server4.company.com
 
-2. YAML format: Example below
+2. YAML format: Used in large organisation and is complex. Example below
 
 all:
     children:

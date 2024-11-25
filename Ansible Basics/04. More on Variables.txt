@@ -19,6 +19,7 @@ These are the 4 important levels at which variables are set. There are totle of 
 
 Register Variable: This type of variable will help us store the output of other command and used to send as an 
                     input to other variables.
+                    These variables will fall under host scope.
 Example:
 ---
 - name: Check /etc/hosts file
@@ -28,4 +29,7 @@ Example:
     register: result
 
   - debug:
-      var: result
+      var: result.rc or result.stdout
+
+Pass variabel file as input in command like this
+>$ansible-playbook -i inventory playbook.yml -v

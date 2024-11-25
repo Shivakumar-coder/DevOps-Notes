@@ -1,6 +1,6 @@
 K8s Services: K8s services enable communications between various components within and outside of the application.
                 K8s services helps us to connect applications together with other applications or users.
-                Example: Our application has groups of pods running various sections such  as a group for serving 
+                Example: Our application has groups of pods running various sections such as a group for serving 
                          front-end load to users and other group for running backend processes and a 3rd group connecting 
                         to an external data source. Here it is services that enable connectivity between these groups of pods.
             Thus services enable loose coupling between microservices in our application.

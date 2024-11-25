@@ -1,4 +1,4 @@
-K8s ClusterIP : A K8s service canhelp us group the pods together and provide a single interface to access the 
+K8s ClusterIP : A K8s service can help us group the pods together and provide a single interface to access the 
                 pods in a group.
 
 Service defin file.
