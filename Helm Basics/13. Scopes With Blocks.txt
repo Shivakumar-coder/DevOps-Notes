@@ -1,0 +1,33 @@
+We we don't specify anything for scope, it defauls to Root and then so on.
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: {{ .Release.Name }}-appinfo
+date:
+    background: {{ .Value.app.ui.bg }}
+    foreground: {{ .Value.app.ui.fg }}
+    database: {{ .Value.app.db.name }}
+    connection: {{ .Value.app.db.conn }}
+
+Here the scope hierarchy follows Root then Release, Value and Name,app and ui,db and ......
+
+At a close look the Root Value and app are redundant.
+To overcome this, use With block by specifying the values as the below example
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: {{ .Release.Name }}-appinfo
+date:
+    {{- with .Value.app }}
+        {{- with .ui }}
+        background: {{ .bg }}
+        foreground: {{ .fg }}
+        {{- end }}
+        {{- with .db }}
+        database: {{ .name }}
+        connection: {{ .conn }}
+        {{- end }}
+        release: {{ $.Release.Name }} ------> Will will tell the helm to evaluate the scope as it's set to default
+    {{- end }}

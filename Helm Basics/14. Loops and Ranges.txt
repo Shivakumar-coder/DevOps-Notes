@@ -1,0 +1,38 @@
+Loops:
+Ex:
+values.yml
+-----
+regions:
+ - ohio
+ - london
+ - mumbai
+ - singapore
+-------------------
+configmap.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: {{ .Value.Name }}-regioninfo
+data:
+    regions:
+    {{- range .Value.regions }}
+    - {{ . }} ---------> we can add any functions with "|"
+    {{- end }}
+
+
+{{- with .Values.serviceAccount.create }}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ $.Values.serviceAccount.name }}
+  labels:
+    {{- range $key, $val := $.Values.serviceAccount.labels }}
+    {{ $key }}: {{ $val }}
+    {{- end }}
+    app: webapp-color
+{{- end }}
+
+"
+IT'S THE will, NOT THE skill..
+"
+– Jim Bunney

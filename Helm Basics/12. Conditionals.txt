@@ -1,0 +1,42 @@
+Ex:
+---
+{{ if .Value.orgLabel }}
+labels:
+    org: {{ .Value.orgLabel }}
+{{ end }}
+
+If the above file is converted to manifest files then
+---
+
+labels:
+    org: payroll
+
+This will contain blank spaces or white spaces. If that's the case, then there occurs a syntax error.
+To overcome this, add a '-' to indicate that helm needs this line to be deleted.
+---
+{{- if .Value.orgLabel }}
+labels:
+    org: {{ .Value.orgLabel }}
+{{- end }}
+
+
+Ex:
+{{- .Value.orgLabel }}
+labels:
+    org: {{ .Value.orgLabel }}
+{{- else if eq .Value.orgLabel "hr" }}
+labels:
+    org: human resources
+{{- end }}
+
+
+eq = equal
+ne = not equal
+lt = less than
+le = less than or equal to
+gt = greater than
+ge = greater than or equal to
+not = negation
+empty = value is empty
+
+We can add a whole dictionary inside if condition

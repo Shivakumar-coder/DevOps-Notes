@@ -1,0 +1,35 @@
+>helm --help
+
+
+>help repo --help
+
+
+>helm search hub wordpress
+
+
+List all the releases done till now
+>helm list
+
+
+To remove all traces of the installed app
+>helm uninstall my-release
+
+
+>helm repo
+
+
+List existing repos
+>helm repo list
+
+
+To update current repos
+>helm repo update
+
+
+Add bitnami helm chart repository in the controlplane node.
+The url for bitnami repository is https://charts.bitnami.com/bitnami
+>helm repo add bitnami https://charts.bitnami.com/bitnami
+
+
+Remove the Hashicorp helm repository from the cluster.
+>helm remove repo hashicorp

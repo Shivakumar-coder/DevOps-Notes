@@ -1,0 +1,23 @@
+Pipes:
+    Ex: >echo "abcd"
+        abcd
+
+        >echo "abcd" | tr a-z A-Z
+        ABCD
+
+{{ upper .Value.image.repository }} ====> NGINX
+This can also be written with the help of pipes
+    Ex: {{ .Value.image.repository | upper}} ====> NGINX
+
+    Advantage:
+        Ex: {{ .Value.image.repository | upper | quote}} ====> "NGINX"
+        Ex: {{ .Value.image.repository | upper | quote | shuffle }} ====> GN"XNI"
+
+With pipes we can add other functions as well to the same object in series
+
+"
+Success is not final, failure is 
+not fatal: it is the courage to 
+continue that counts.
+"
+– Winston Churchill

@@ -1,0 +1,30 @@
+When we run install cmmd, we don't need to specify any run time values as those values will be picked by helm from 
+values.yml file.
+
+The 1st way to pass value at run time is to make use of cmmd line parameters.
+Ex:
+>helm install --set wordpressBlogName="Helm Tutorials" my-release bitnami/wordpress
+
+2nd way to pass in values is by pass the custome values file as one of the parameters
+Ex:
+---custom-values.yml---
+wordpressBlogName: Helm Tutorials
+wordpressEmail: exc@abc.com
+---------
+>helm install --value custom-value.yaml my-release bitnami/wordpress
+
+If we really want to over-ride the default values file, it can we done with below 2 steps.
+1. Pull: 1st pull the helm chart from the repo
+        Ex: >helm pull bitnami/wordpress
+                this will pull the chart in archived form
+        Ex: >helm pull --untar bitnami/wordpress
+                this will pull the chart from the online repo and un-zip the chart
+2. Edit: Now edit the values.yaml file and save the changes, but now run the chart with local path of the edited chart
+        Ex: >helm install my-release ./wordpress
+
+"
+All you need is the plan, the 
+road map, and the courage 
+to press on to your destination.
+"
+– Earl Nightingale

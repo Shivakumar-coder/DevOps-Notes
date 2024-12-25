@@ -1,0 +1,18 @@
+There are 3 ways to verify that the chart is working as expected.
+
+1. Linting will verify the chart and the YAML format is correct.
+    Ex: >helm lint ./nginx-chart
+
+2. 2ndly, verifying the template helps us make sure that the templating part is working as expected.
+    Ex: >helm template ./nginx-chart
+        >helm template ./nginx-chart --debug
+
+3. 3rd option is the dry run option, which helps us make sure that the chart works well with k8s itself.
+    Ex: >helm install hello-word-1 ./nginx-chart --dry-run
+
+"
+You don’t learn to walk by 
+following rules. You learn by 
+doing, and falling over.
+"
+– Richard Branson

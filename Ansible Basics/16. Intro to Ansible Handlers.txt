@@ -8,3 +8,20 @@ Ansible Handlers: With handlers you can define an action to restart the web serv
                   Handlers are specific tasks associated with specific events or notifications.
                   They're typically defined in a playbook and are executed only when triggered by a task notifying them.
                   Handlers enable you to manage actions that depend on the state or config changes of your systems.
+
+---
+-
+    name: Deploy Application
+        hosts: application_servers
+        tasks:
+            - name: Copy Application Code
+                copy:
+                    src: app_code/
+                    dest: /opt/application/
+                notify: Restart Application Service ----------> this line will notify the handele that the task is done.
+
+        handeles:                                   ----------> One this handeler getts notification that the task is done,
+            - name: Restart Application Service                 now handeler will do it's work.
+                service:
+                    name: application_servers
+                    state: restarted

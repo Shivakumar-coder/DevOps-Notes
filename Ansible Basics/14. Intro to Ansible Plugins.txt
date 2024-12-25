@@ -21,18 +21,18 @@ Action Plugin: This plugin simplifies load balancer management. With an action p
 
 Apart from the above plugins, Ansible offers othert plugins that can further extend it's functionality.
 
-Lookup plugins are handy tools that fetch data from external sources like databases or APIs and le3t you use that 
+Lookup plugins; are handy tools that fetch data from external sources like databases or APIs and let you use that 
 data within your playbooks.
 
-Filter plugin offer additional data manipulation and transformation capabilities within your playbooks allowing you 
+Filter plugin; offer additional data manipulation and transformation capabilities within your playbooks allowing you 
 to modify variables or format output.
 
-Connection plugin enable Ansible to connect and communicate with various target systems such as SSH, WinRM or Docker.
+Connection plugin; enable Ansible to connect and communicate with various target systems such as SSH, WinRM or Docker.
 
-Dynamic Inventory plugins allow Ansible to retrieve inventory info from various sources like cloud providers or config 
+Dynamic Inventory; plugins allow Ansible to retrieve inventory info from various sources like cloud providers or config 
 management database.
 
-Callback plugins provide hooks into Ansible's execution lifecycle allowing you to capture events and perform custom 
+Callback plugins; provide hooks into Ansible's execution lifecycle allowing you to capture events and perform custom 
 actions during playbook execution
 
 =====================================================================================================================

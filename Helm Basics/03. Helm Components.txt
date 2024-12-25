@@ -1,0 +1,32 @@
+Helm has a number of components it will be working with.
+
+1. Helm CLI: used to perform Helm activities like installing a chart, upgrading, rollback, etc.
+
+2. Helm Charts: - They are a collection of files, they contain all the instructions that Helm needs to know to be able
+                  to create the collection of objects that you need in your K8s cluster.
+                - By using charts and adding the objects according to the specific instructions in the charts, Helm in a 
+                  way, installs applications into your cluster.
+                - When a chart is applied to your cluster, a release is created.
+                - A release is a single installation of an app using a Helm chart.
+                - Within each release you can have multiple revision.
+                - Each revision is like a snapshot of the app.
+                - Every time a change is made to the app, a new revision is created.
+
+3. Chart repositories: - Carts, like docker repositories, can be uploaded to online public chart repository.
+                       - A single place were we can find these publicly availabe charts is ArtifactHub.io
+
+4. Metadata: - When we do a changes to a chart, metadata will store what is been done with Helm like edit charts, do a 
+               installation or updation, etc. These data of the data is called metadata.
+             - This metadata is stored inside the K8s cluster as K8s secrets.
+             - By this Helm will always know everthing about what it did through metadata.
+
+When a chart is applied to your cluster, a release is done by Helm. This release will be having a name.
+This is because, we can have multiple releases based on single chart.
+This is use full when we want the changes done to be tested on pre-prod and other env, since only the release is different 
+but not the chart.
+Ex:
+---
+>helm install my-site bitnami/wordpress
+>help install my-second-site bitnami/wordpress
+
+These 2 release can be changed without changing the other release.

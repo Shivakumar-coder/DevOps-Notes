@@ -1,0 +1,22 @@
+Each time we pull in a chart and install it, a release is created.
+
+A release is somewhat similar to an app, but more specifically it represents a collection of k8s objects.
+Since helm knows what k8s objects belong to each release, it can do things lie upgrade, rollback, uninstall, etc without 
+touching objects of other that might belong to other releases.
+So, each release can be managed independently even if they are all based on the same chart.
+
+Install a specific version on some chart
+Ex:
+>helm install nginx-release bitnami/nginx --version 7.1.0
+
+If a release has went in live about a month ago and we need to update several components of our app, then 
+Helm can do it with a single cmmd, making the lifecycle management of the our app easy.
+
+To know more of a release done to an app
+Ex:
+>helm history nginx-release
+
+To rollback a release with that specific revision number
+Ex:
+>helm rollback nginx-release 1
+        This will create a new revision 3 which is similar to revision 1.

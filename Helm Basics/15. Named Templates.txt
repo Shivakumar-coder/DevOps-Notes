@@ -1,0 +1,58 @@
+There will be many objects in k8s template files that are identical and written many times which results in duplicity and 
+repeating things can get complicated.
+Now, we can remove the repeating lines and move to what is called a partial or named template.
+Ex:
+_helpers.tpl
+-------
+{{- define "labels" }}
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/instance: nginx
+{{- end }}
+
+The "_" in the name tells helm not to consider this file as a usual template file. Because when we run the helm 
+create command, helm reads all the files in the templates dir and converts those into k8s manifests.
+In this case, helm will considers this as an only a helper file, and we don't want this file to end up as a k8s 
+manifests file.
+
+All the files created with "_" are created or converted into a k8s manifest file.
+
+Now we can write all the identical lines once under a define statement and use a user defined names.
+Now, these lines can now be imported or rather included anywhere we want usin a simple template statement as from 
+the example below.
+Ex:
+service.yaml
+----
+{{- template "labels" }}
+
+To use normal templates and expect the values to be taken only from values file.
+Ex:
+_helpers.tpl
+-------
+{{- define "labels" }}
+    app.kubernetes.io/name: {{ .Release.Name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+service.yaml
+------
+labels:
+    {{- template "labels" . }}
+
+
+When the file is generated, the format will not be changed when the k8s manifest files are formed. The number of 
+space or indentation will not be set accordingly to the template files.
+To fix this problem, we can make use of the function "indent" by pipeing it. But template is not a function, it's an action.
+So, pipeing won't work on it. The other object which does the same job as template is "include" function
+Ex:
+metadata:
+    name: {{ .Release.Name }}-nginx
+    labels:
+        {{- template "labels" . }}
+spec:
+    selector:
+        matchLabels:
+            {{- include "labels" . | indent 2 }}
+    template:
+        metadata:
+            labels:
+            {{- include "labels" . | indent 4 }}

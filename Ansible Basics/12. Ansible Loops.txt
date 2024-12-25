@@ -37,3 +37,36 @@ Update it to install all packages defined under packages variable.
         name: '{{ item }}'
         state: present
       with_items: '{{ packages }}'
+
+The with_* is a legacy looping mechanism, now improvised to use with other directives as well 
+like
+  with_items:
+    - <1st item variable>
+    - <2nd item variable>
+    - <3rd item variable>
+    - <4th item variable>
+
+  with_files:
+    - "<1st file path>"
+    - "<2nd file path>"
+  
+  with_url:
+    - "<1st url>"
+    - "<2nd url>"
+    - "<3rd url>"
+  
+  with_mongodb:
+    - database: dev
+      connection_string: "mongodb://dev.mongo/"
+    - database: prod
+      connection_string: "mongodb://prod.mongo/"
+  
+  with_dict
+  with_etcd
+  with_env
+  with_filetree
+  with_ini
+  with_inventory_hostnames
+  with_k8s
+
+  etc........................

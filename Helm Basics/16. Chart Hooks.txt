@@ -1,0 +1,110 @@
+Ex:
+We can write the charts in such a way that when ever we do a helm upgrade, a DB can be automatically backed up before 
+the upgrade begins. So we have a way to restore from backup in case something goes wrong, etc.
+
+Workflow of events in Helm
+1. Helm command is executed.
+2. Helm verifies the files and templates in the chart.
+3. Helm then renders the manifest files in their final form.
+4. In the final step, helm makes the changes to the services on the cluster.
+
+Lets say for example, we need to take a backup of a DB before the final step. We will use a pre-upgrade hook.
+The pre-upgrade hook runs a predefined action which could really be anything.
+In this example, it is to backup of the DB.
+With pre-install hook in place, Helm waits for this action to be completed and for it to be ready, in a ready state 
+before proceeding to the final phase of the installation or upgrading applications on k8s.
+
+If we want helm to perform some kind of post upgrading activate or activates to be performed by helm after the 4th and 
+final step, then we can add post-upgrade hook.
+
+Types of hooks
+ - Pre and Post upgrade hooks
+ - Pre and Post install hooks
+ - Pre and Post delete hooks
+ - Pre and post rollback hooks
+
+If you have some kind of script, then how will you execyte by k8s ?
+You will develop the script and then run it as a pod.
+We know that the created pod runs forever
+If we want to just run the script once, then we will create a job instead of a pod in the k8s node.
+
+It is through jobs or pods that we configure hooks in the Helm charts.
+
+Ex of the manifest file to create a job that runs the backup script using an Alpine image.
+Ex:
+--------service-------------------
+backup-job.yaml
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+    name: {{ .Release.Name }}-nginx
+spec:
+    template:
+        metadata:
+            name: {{ .Release.Name }}-nginx
+        spec:
+            restartPolicy: Never
+            containers:
+                - name: pre-upgrade-backup-job
+                  image: "alpine"
+                  command: ["/bin/backup.sh"]
+
+This file can now be placed in the templates dir are rendered as k8s manifest files, when the chart is installed to deploy 
+the services.
+But this job shouldn't work like that. It has to be run before the install phase as a pre-installed hook and not with or 
+during the install or upgrade phase. This has to be run during the pre-upgrade as part of the pre-upgrade process.
+
+How to tell to helm that this job that this job that we've created is a pre-upgrade hook and not a usual template ?
+For this, we add an annotation: they are a way for us to add additional metadata to an object, which may be used by 
+clients of k8s, in this case helm to store data about that object and perform some kind of action.
+Ex:
+--------service-------------------
+backup-job.yaml
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+    name: {{ .Release.Name }}-nginx
+    annotation:
+        "helm.sh/hook": pre-upgrade
+spec:
+    template:
+        metadata:
+            name: {{ .Release.Name }}-nginx
+        spec:
+            restartPolicy: Never
+            containers:
+                - name: pre-upgrade-backup-job
+                  image: "alpine"
+                  command: ["/bin/backup.sh"]
+
+We can set up multiple pre or post install action to be performed, but in what order should those be executed ?
+For this, we can set weights for each hook. These could be -ve or +ve numbers. So we set a weight for each job in the 
+order they should be run.
+The helm will execute each job in the ascending order of the weights.
+If multiple hooks have same weight, then they will be sorted by resource kind and finally by name in ascending order 
+and then executed that way.
+---
+metadata:
+    name: {{ .Release.Name }}-nginx
+    annotation:
+        "helm.sh/hook": pre-upgrade
+        "helm.sh/hook-weight": "5"
+
+What should be done to the resource created for the backup job ?
+After the task is completed, the resource created will be present in the cluster as a resource unless we have a say 
+in what should be done for that resource.
+We can set the annotation to either delete or retain the resource with hooks based on the result of the job.
+Ex:
+---
+metadata:
+    name: {{ .Release.Name }}-nginx
+    annotation:
+        "helm.sh/hook": pre-upgrade
+        "helm.sh/hook-weight": "5"
+        "helm.sh/hook-delete-policy": hook-succeeded (this will delete the resource after job is successfull, 
+                                                      if job fails then resource will not be deleted)
+                                    : hook-failed (if the hook failed, then resource will be deleted)
+                                    : before-hook-creation (this will delete the previous resource 
+                                                            before a new hook is launched)

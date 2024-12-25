@@ -1,0 +1,34 @@
+Functions: Functions in helm will help to transform data from one format to other
+            Ex: {{ .Value.image.repository }} will be converted to nginx
+                {{ upper .Value.image.repository }} will be converted to NGINX
+                    Here upper is a function
+                
+                {{ quote .Value.image.repository }} will be "nginx"
+
+                {{ replace "x" "y" .Value.image.repository }} will be nginy
+
+                {{ shuffle .Value.image.repository }} will be xignn
+
+                {{ default "nginx" .Value.image.repository }} will set the value to nginx if there is no values in values.yml
+
+There are other types of functions
+ - Cryptographic and Security
+ - Date
+ - Dictionaries
+ - Encoding
+ - File Path
+ - K8s
+ - Chart
+ - Logic and Flow
+ - Lists
+ - Math
+ - n/w
+ - Reflection
+ - Regex
+ - String
+ - Type Conversion
+ - URL
+ .
+ .
+ .
+ etc

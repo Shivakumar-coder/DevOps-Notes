@@ -1,0 +1,34 @@
+Helm charts are incredibly versatile.
+They can automate almost any kind of k8s pkg installation.
+Helm like installation wizard will install those pkgs along with their dependencies and in the right path.
+
+1st create a Helm dir structure. This can be done using helm create cmmd.
+Syntax: >helm create <new_chart_name>
+Ex:
+>helm create nginx-chart
+
+    This will create a skeleton structure of the helm chart like charts dir, Chart.yaml, templates dir, values.yaml.
+    Now you need to just modify these files or add the relevant files to the templates or chart dir.
+
+Move the deployment.yaml and service.yaml to templates dir, ideally this will be enough to run a simple app.
+However, note that those service and deployment files in the templates folder have all static values on it.
+
+The k8s yaml files generally will be having objects such as name, replica sets as constant values.
+We need to change those type of values to templating variable using templating language.
+
+    .Release.Name ----> This will assign the name from the helm install command line.
+        Here the 1st "." refers to the root level or top-level scope.
+        The Release.Name specified in the helm install cmmd will be given to that object.
+
+        The Release mentioned here generally refers to the cmmd line argument inputs
+    
+    .Chart ------> It will refer to the chart objects values.
+    .Capabilities -----> Refers to details of the k8s cluster.
+    .Values --------> Refers to the object values set in values.yaml files.
+
+    The Release, Chart and Capabilities objects have to refer values of built in objects.
+    So these object start with capital letters.
+    Ex: .Release.Name, .Release.IsUpgrade, .Release.Revision, .Chart.Name, .Chart.ApiVersion, .Capabilities.KubeVersion
+
+    The Values objects are started with simple letters because they are user defined
+    Ex: .Values.replicaCount, .Values.image

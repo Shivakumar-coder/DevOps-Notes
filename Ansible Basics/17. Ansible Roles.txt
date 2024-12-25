@@ -6,6 +6,13 @@ Ansible roles: The primary purpose of roles is to make your work reusable.
                default values goes into the defaults directory, any templates used by the playbooks go into the 
                templates directory.
 
+What ever the roll you think off is already been written and shared in Ansible Galaxy.
+
+How does the ansible knows were the role playbook is stored.
+When we first download the roles dir from community, it will be stored in /etc/ansible/roles
+To make use of the downloaded roles, we need to move the roles directory under the directive in which you want 
+you to use the roles.
+
 Example:
 ---
 -

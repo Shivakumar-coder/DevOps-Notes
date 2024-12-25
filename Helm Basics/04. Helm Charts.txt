@@ -1,0 +1,33 @@
+Helm is rather a easy to use cmmd line tool.
+
+It's like an automation tool were in we give the end result and Helm will take care of the rest.
+
+Helm know's how to do it's job with the help of what are called "charts".
+
+Charts are like an instructions manual for Helm. By reading and interpreting their contents, it then knows exactly 
+what it has to do to fulfill a user's request.
+
+For us humans, charts are just a bunch of text files. Each specific file named in a specific way has well-defined purpose.
+
+Apart from all other yaml file. Helm chart also has a chart.yml file.
+It contains info about the chart itself such as
+ - apiversion: If your using Helm 2, then this file is not required or will be kept at only v1. Helm 3 should be v2.
+               If v2 is specified running on Helm 2, then Helm will ignore this field.
+ - appversion: This field is for info purpose only.
+ - version: version of the chart itself
+ - name: Name of the chart
+ - description
+ - type: Has 2 types, "application" which will be by default indicating that the chart is for deployment purpose.
+         The other type is "library", means that the chart provides utilities that helps in building charts.
+ - dependencies: the chart or app that needs to be installed brfore this chart.
+ - kewords: useful when searching through repos for this particular chart.
+ - maintainers: info about the maintainers.
+These are just few of the many properties a chart.yml file has.
+
+A chart dir has following structure:
+ - templates (templates dir)
+ - values.yml (configurable values)
+ - chart.yml (chart info)
+ - LICENSE (Chart License)
+ - README.md (Readme file)
+ - charts (Other chart that dependenging on)

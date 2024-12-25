@@ -6,7 +6,7 @@ Example:
    apt:
      name: nginx=1.18.0
      state: present
-   when: ansible_facts['os_family] == 'Debian' and 
+   when: ansible_facts['os_family'] == 'Debian' and 
          ansible_facts['distribution_major_version'] == '18'
 
 =====================================================================================================

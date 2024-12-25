@@ -6,6 +6,15 @@ Command Module: The command module is used to execute a command on a remote node
 =====================================================================================================================
 Script Module: The script module executes a script which is located locally on the Ansible controller 
                machine on one or more remote nodes after transferring it over.
+Example:
+playbook.yml
+---
+-
+  name: Play 1
+  hosts: localhost
+  tasks:
+    - name: Run a script on remote server
+      script: /some/local/script.sh -arg1 -arg2
 =====================================================================================================================
 Service Module: The service module is used to maintain services on a system, such as starting, stopping or 
                 restarting a service.

@@ -4,12 +4,6 @@ Modules & Plugins Index:
 2. Navigate Ansible's extensive modules and plugins, helping you find the right tool for optimal automation.
 3. Without an index, tracking and understanding the numerous Ansible modules and plugins would be difficult.
 
-
-User: bob
-Password: caleston123
-
-node01
-node02
 =====================================================================================================================
 Update the playbook named playbook.yaml under /home/bob/playbooks directory with a task named 
 Execute a script to run a script. The script is located at /tmp/install_script.sh on student-node.

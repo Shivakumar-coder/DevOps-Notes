@@ -1,0 +1,24 @@
+K8s don't care about our apps or installed configs. All that it knows is that we declared various objects and it 
+proceeds to make each of them exist in our cluster.
+K8s doesn't really know that this persistent volume and that deployment and that secret and that service are all 
+part of a big application called WordPress.
+K8s only looks at each individual piecds that the admin wanted to have in the cluster and takes care of each 
+one individually.
+
+Helm will take care of such things were K8s lag and is also called package manager for K8s.
+
+Whenever we need to perform an action, we don't tell Helm the objects that it should touch, we just tell what 
+package we want to act on, like an example the whole WordPress app package.
+
+Based on the pkg name, it then knows what objects it should change and how even if there are hundreds of objects 
+that belong to that particular pkg.
+
+Helm is like an application installer wizard( like a Google PlayStore ), that when used will make sure that the entire app 
+is installed with all the components and files in right order and at right place.
+
+With Helm we use a single cmmd to install our entire app even if it needs hundreds of objects.
+
+Instead of configuring each and every yaml file, we can customise a single Helm yaml file.
+
+We can upgrade the app with single command. Helm will know what individual objects need to be changed to make 
+this happen. Same can be said for rollback and uninstall.

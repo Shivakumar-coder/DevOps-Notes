@@ -1,0 +1,30 @@
+Before Helm 3.0, Helm CLI would speak with Tiller to installed in K8s nodes and proceed to do as Helm says with K8s.
+
+Now with Helm 3.0, Helm will directly speak with K8s. It also includes Role Based Access Control feature and 
+Custom Resource Definitions.
+
+Helm 3.0 has 3-Way Strategic Merge Patch strategy:
+
+Example:
+
+Helm 2 working:
+
+Let's say you have performed a WordPress release with version 4.8, a snapshot will be created by Helm, 
+let's say that is Revision: 1
+Next you will upgrade WordPress to 5.8 version, let's say that version snapshot is Revision: 2
+Now if you do a rollback, then your version will be rollback back to 4.8, but it's snapshot will be a new Revision: 3.
+Even though a rollback is done and Helm now points to old chart, there is new snapshot called Revision: 3.
+
+New Revision are created when ever any important component is changed.
+
+Helm 3 working with 3-Way Strategic Merge Patch strategy:
+
+Let's say you have performed a WordPress release with version 4.8, a snapshot will be created by Helm, 
+let's say that is Revision: 1
+Now you will just use kubectl CLI and upgrade just wordpress to new version 5.8
+At this point of time there is no new snapshot created.
+But now if we want to do a rollback then, there is no new Revision snapshot which has new chart to compare with old chart.
+
+Since Helm 3.0 uses 3-Way Strategic Merge Patch, it will compare the current chart of the Revision with old chart along 
+with Live State of K8s look live using YAML form to do a rollback intelligently.
+This even works when you have added new components manually and Helm will preserve these new components.

@@ -1,0 +1,24 @@
+To package a helm chart, run the package command
+>helm package <name-of-the-chart-dir>
+
+This will name the archive file with the chare name and version. The file is compressed to .tgz format.
+Now we can upload this chart file to the chart repo.
+But before uploading it to chart repo, consider signing your chart to avoide malicious activities.
+
+Signing makes it safer for download by cryptographically sign files and packages.
+
+"
+I hear and I forget. I see and I 
+remember. I do and I 
+understand.
+"
+– Confucius
+
+--------------------------------------------------------------------------------------------------------------------
+We have added the webapp-color chart in the /root/ directory.
+Package the chart in the /root/package directory.
+
+Answer:
+mkdir /root/package
+cd /root/package/
+helm package /root/webapp-color
