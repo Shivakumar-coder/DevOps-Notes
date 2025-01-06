@@ -37,3 +37,8 @@ kubectl is the CLI for Kubernetes.
 kube-apiserver, etcd, controller, scheduler are the components which will be installed on master node.
 
 kubelet, container runtime are the components which will be installed on worker node.
+
+All these 6 core Kubernetes components will communicate with each other over a network called CNI network.
+Container Network Interface.
+
+There is one other component called service kube proxy.

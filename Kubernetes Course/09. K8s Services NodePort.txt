@@ -14,6 +14,7 @@ Service - NodePort : This is a service which will opens a port on the pod and ma
 Example: Let us assume that the webapp is hosted on port 80 of the pod. Then
     Port 80 on the pod will be TargetPort---->(1)
     If this is not written in the defin file then it will take the value as that of the service port.
+    Pod's port is called as TargetPort.
 
     The NodePort service also has a port open, consider that to be port 80---->(2)
     The NodePort service now can be mapped to the port on the pod i.e TargetPort.
