@@ -6,7 +6,7 @@ del countries[1] -----> to delete an item
 --------------------------------------------------------------------------------
 List can have -ve index
 last element's index is -1
-last 2nd element's index is -3
+last 2nd element's index is -2
 .
 .
 .

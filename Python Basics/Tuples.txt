@@ -1,4 +1,4 @@
-Tuples arr immutable data structures.
+Tuples are immutable data structures.
 A Tuple is a collection of items that are ordered, unchangeable, and allow duplicate values.
 
 Ex:
