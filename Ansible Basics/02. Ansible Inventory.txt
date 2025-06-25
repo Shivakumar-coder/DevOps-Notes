@@ -1,5 +1,5 @@
-Ansible can work with 1 or more system at the same time. In order to work with multiple 
-systems, ansible needs to establish connection with those system.
+Ansible can work with 1 or more system at the same time. Inorder to work with multiple 
+systems, ansible needs to estblish connection with those system.
 
 Connectivity between linux system is usually done by SSH, for windows Connectivity can be done by Powershell Remoting.
 
