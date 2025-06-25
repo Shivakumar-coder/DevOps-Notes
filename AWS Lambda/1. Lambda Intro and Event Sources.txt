@@ -1,0 +1,33 @@
+Lambda starts with an event.
+
+The event triggers Lambda to do something, or in other words, to execute or invoke the code 
+that you provided.
+
+The source of the event can be another AWS service, such as S3 or API gateway, or it can be triggered from a 
+stream of data or queues like those from Kinesis data streams, or the simple queuing service.
+
+This is because Lambda supports both push and pull model to invoke Lambda.
+1. In push model, another service directly triggers Lambda and tells it to activate when something happens.
+   There are 2 types of push model source types
+   a. Synchronous  - These event sources expect a response back from Lambda. Lambda will only pass along the results
+                     of the code execution back to the source.
+                     If there is an error or any failure, the Lambda will not re-trigger.
+                     The app is in command of the retrigger.
+
+   b. Asynchronous - The event is placed in a queue for the Lambda and a success response is sent back to the event source
+                     ack that the Lambda has triggered.
+                     Now it's up to Lambda to handel the output and retries if the execution results in un-successfull event.
+                     In failed case, Lambda attempts 2 other retries, 1min and 2min apart.
+                     You can still send success response back by configuring destinations.
+
+2. In pull model, information is flowing through a stream or put in a queue that Lambda periodically pose and it then 
+   goes into action when certain events are detected.
+   There are 2 types of event sources.
+   a. Streams - The Lambda function which receives steady source of event trigger like as that of logging inputs, etc.
+                If output is failed or error, the Lambda will stop pulling and retries the msg.
+                Example: Dynamo DB, Kinesis Data Streams.
+
+   b. Queues  - The Lambda function which receives event trigger from queueing applications are those that collect msgs and
+                place them in a bucket or queue to be processed. If output is failed or error then it auto retries similar to
+                Asynchronous
+                Example: AWS queueing service.
