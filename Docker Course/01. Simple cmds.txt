@@ -1,3 +1,6 @@
+Know the docker software installed version:
+    >docker --version
+
 Start a container:
     >docker run <container_image_name>
 
@@ -9,7 +12,9 @@ Stop a container:
     >docker stop <container_name>
 
 Remove a container
-    >docker rm <container_image_name> (will stop a container if running and delete it)
+    >docker rm <container_name> (will stop a container if running and delete it)
+    >docker rm -f <container_name>(will force stop and remove)
+    >docker rm -f $(docker ps -a -q)(docker will remove all the present container in the machine)
 
 List Images
     >docker images(will list all images with it's size)
@@ -31,3 +36,7 @@ Command to run container with name:
 
 Execute a command on a running container
     >docker exec <container_name> <command_to_be_executed>
+        This will run a command and takes the STDIN access from user and ends the terminal connection
+
+Execute a command on a running container and stay in the terminal
+    >docker exec -it <container_name> <command_to_be_executed>

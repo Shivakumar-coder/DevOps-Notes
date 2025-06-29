@@ -13,6 +13,17 @@ Here to better understand the image name nginx
 So the command will be expanded as
 >docker run docker.io/library/nginx
 
+How to save the work done in a container as an image:
+    >docker commit <container_name/container_id> <docker_hub_user_name>/<docker_image_name>
+    Ex: sudo docker commit <container_id> shivakumar1coder/apache
+    Here image_name can be your choise
+
+How to push image to docker hub:
+1. Login in your machine: >docker login
+      This will ask for docker hub creds.
+
+2. Now push the image: >docker push shivakumar1coder/apache
+
 All big tech have there own registry
 
 If we want to have our own in house registry, then we can pull a image from Docker Hub called registry and set it up to 

@@ -7,6 +7,10 @@ To run in interactive mode within a terminal:
     >docker run -it <container_name>
         this will attach a terminal to the running container and it will be interactive.
 
+To run in interactive mode within a terminal and should be running in the background:
+    >docker run -it -d <container_image_name>
+        this will start a container and it will run in the background.
+
 ====================================================================
 
 Run - PORT mapping: Docker container has it's own IP address and port. Docker host (on which the container is running) has it's

@@ -5,6 +5,31 @@ Install program dependencies using pip
 Copy source code to /opt folder
 Run the web server.
 -------------------------------------------------------------------
+Few Dockerfile keywords command to know:
+1. FROM: The FROM keyword is used to define the base image, on which we will be building.
+    Ex: FROM ubuntu
+
+2. ADD: The ADD keyword is used to add files to the container being built.
+    Syntax: ADD <source> <destination in the container>
+    Ex: ADD . /var/www/html
+
+3. RUN: The RUN keyword is used to add layers to the base image, by installing components.
+        Each RUN statement adds a new layer to the docker image.
+    Ex: RUN apt-get update
+    Ex: RUN apt-get -y install apache2
+
+4. CMD: The CMD keyword is used to run commands on the start of the container.
+        These commands run only when there is no argument specified while running the container
+    Ex: CMD apachectl -D FOREGROUND
+
+5. ENTRYPOINT: The ENTRYPOINT keyword is used strictly run commands the moment the container initializes.
+               The difference between CMD and ENTRYPOINT is, ENTRYPOINT will run irrespective of the fact wether args is
+               specified or not
+    Ex: ENTRYPOINT apachectl -D FOREGROUND
+
+6. ENV: The ENV keyword is used to define environment variable in the container run-time.
+    Ex: ENV name Devops File
+-------------------------------------------------------------------
 All the above can be written in docker file
 Dockerfile is a Instruction Argument type of file
 
